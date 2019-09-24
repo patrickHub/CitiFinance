@@ -1,0 +1,275 @@
+/*--------------- ----Global style---------------------- */
+/* apply a natural box layout model to all elements, but allowing component to change */
+html {
+  box-sizing: border-box;
+}
+*,
+*:after,
+*:before {
+  box-sizing: inherit;
+}
+body {
+  margin: 0;
+  font-family: "Gothic A1", "Noto Sans SC", "Assistant", sans-serif;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+main {
+  margin-top: 125px;
+}
+
+/*--------------- -----Headers--------------------- */
+header {
+  position: relative;
+}
+.top-login {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: #e3e0e0;
+  text-align: right;
+}
+.top-login a {
+  display: inline-block;
+  width: 150px;
+  height: 100%;
+  margin-right: -5px;
+  border-left: 1px solid black;
+  color: black;
+  text-align: center;
+  padding: 1% 0;
+}
+
+.top-login a:hover {
+  border-bottom: 1px solid #eb1f1b;
+}
+
+.top-login img {
+  max-height: 13px;
+}
+
+nav {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  right: 0;
+  height: 75px;
+  background: white;
+  border: 1px solid #e3e0e0;
+  overflow: hidden;
+}
+
+nav .menu-link {
+  display: inline-block;
+  width: 200px;
+  height: 100%;
+  color: black;
+  font-size: 20px;
+  text-align: center;
+  margin-right: -4px;
+  line-height: 75px;
+}
+nav .menu-link:hover {
+  border-bottom: 5px solid #eb1f1b;
+}
+nav img {
+  height: 21px;
+}
+nav .menu-link-search {
+  float: right;
+  padding: 25px;
+  border-left: 1px solid #e3e0e0;
+}
+
+nav .logo {
+  display: inline-block;
+  width: 300px;
+  height: 100%;
+  font-family: "Saira", sans-serif;
+  font-style: italic;
+  font-size: 20px;
+  text-decoration-line: underline;
+  text-decoration-color: black;
+  color: white;
+  background: #eb1f1b;
+  border: 1px solid #eb1f1b;
+  text-align: center;
+  line-height: 75px;
+}
+
+/*--------------------welcome teaser grid--------------------- */
+.teaser-grid {
+  width: 100%;
+  display: inline-grid;
+  grid-template-columns: 60% 39%;
+  grid-column-gap: 11px;
+}
+.teaser-col-1 {
+  background-image: url("../images/landingpage_assets/welcome_22714862561_09edd9810c_z.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-left: 20px;
+}
+.teaser-col-2 {
+  display: inline-grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 300px 300px;
+  grid-row-gap: 20px;
+}
+.teaser-col-2 .teaser-little-1 {
+  display: flex;
+  align-items: flex-end;
+  background-image: url("../images/landingpage_assets/order_card_5417026496_a22a500886_o.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.teaser-col-2 .teaser-little-2 {
+  background-image: url("../images/landingpage_assets/4183753319_f857dc9400_z.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.welcome-headline {
+  width: 80%;
+  max-width: 10em;
+  font-size: 57px;
+  font-weight: bold;
+  color: white;
+  background-color: rgba(138, 86, 80, 0.5);
+  padding: 20px;
+  margin-top: 20%;
+  margin-bottom: 10px;
+}
+.direct-link {
+  display: inline-block;
+  color: white;
+  font-size: 20px;
+  width: 80%;
+  max-width: 15em;
+  background-color: rgba(138, 86, 80, 0.5);
+  border-bottom: 4px solid #eb1f1b;
+  padding: 20px 20px 20px 20px;
+}
+
+.direct-link:hover {
+  background: #eb1f1b;
+  border-bottom: 4px solid #fff;
+}
+/*--------------------secure teaser--------------------- */
+.teaser-secure {
+  display: flex;
+  background-color: #f1ece5;
+  width: 100%;
+  margin-top: 20px;
+  padding: 30px 0;
+  flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-box-align: center;
+  justify-content: center;
+}
+.teaser-secure div {
+  display: flex;
+  justify-content: center;
+  max-width: 40%;
+}
+.teaser-secure h1 {
+  margin-right: 70px;
+  color: #b24020;
+  font-size: 40px;
+}
+.teaser-secure .direct-link {
+  width: 100%;
+  max-width: 300px;
+  height: 60px;
+  margin-top: 30%;
+}
+
+/*--------------------product & services teaser--------------------- */
+.teaser-product-service {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.teaser-product-service .row-1 {
+  display: flex;
+  justify-content: center;
+}
+.teaser-product-service .row-2 {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 300px;
+}
+.teaser-product-service .row-2 .col-1 {
+  display: flex;
+  align-items: flex-end;
+  width: 32%;
+  max-width: 32%;
+  padding-left: 20px;
+  background-image: url("../images/landingpage_assets/card_account_6554795787_d38c6ec5bd_z.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.teaser-product-service .row-2 .col-2 {
+  display: flex;
+  align-items: flex-end;
+  width: 32%;
+  max-width: 32%;
+  padding-left: 20px;
+  background-image: url("../images/landingpage_assets/transfert_payment_4777247084_2924a0f3ed_z.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.teaser-product-service .row-2 .col-3 {
+  display: flex;
+  align-items: flex-end;
+  width: 32%;
+  max-width: 32%;
+  padding-left: 20px;
+  background-image: url("../images/landingpage_assets/download_doc_30284670277_27617ff1dd_n.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/*--------------------footer--------------------- */
+.footer {
+  margin-top: 55px;
+  padding-top: 30px;
+  background-color: #f2f2f2;
+  color: #000;
+}
+.footer-list {
+  display: flex;
+  justify-content: space-around;
+}
+.footer-list ul {
+  list-style-type: none;
+  color: #000;
+}
+.footer-list ul li a:hover {
+  text-decoration-line: underline;
+}
+.footer-list ul li:first-child {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.footer-row {
+  display: flex;
+  justify-content: space-around;
+}
+.footer-row .legal-info {
+  margin: 30px 60px;
+  font-size: 14px;
+  text-align: center;
+}
+.footer-row .legal-info a {
+  color: #2977c9;
+  font-weight: bold;
+}
+.footer-row .legal-info a:hover {
+  text-decoration-line: underline;
+}
