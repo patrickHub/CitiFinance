@@ -3,6 +3,11 @@
     function insert_person($person)
     {
         global $db;
+
+        $errors = validate_person($person);
+        if (!empty($errors)) {
+            return $errors;
+        }
         
         // prepare an insert statement
         $sql = "INSERT INTO persons ";
@@ -18,10 +23,14 @@
 
             // execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
+                // Close statement
+                mysqli_stmt_close($stmt);
                 return true;
             } else {
                 // insert execute failled
                 echo mysqli_error();
+                // Close statement
+                mysqli_stmt_close($stmt);
                 db_disconnect($db);
                 exit();
             }
@@ -38,6 +47,11 @@
     {
         global $db;
 
+        $errors = validate_address($address);
+        if (!empty($errors)) {
+            return $errors;
+        }
+
         // prepare an insert statement
         $sql = "INSERT INTO address ";
         $sql .= "(person_id, country, ";
@@ -51,10 +65,14 @@
 
             // execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
+                // Close statement
+                mysqli_stmt_close($stmt);
                 return true;
             } else {
                 // insert execute failled
                 echo mysqli_error();
+                // Close statement
+                mysqli_stmt_close($stmt);
                 db_disconnect($db);
                 exit();
             }
@@ -69,22 +87,31 @@
     {
         global $db;
 
+        $errors = validate_client_auth($client_auth);
+        if (!empty($errors)) {
+            return $errors;
+        }
+
         // prepare an insert statement
         $sql = "INSERT INTO client_auths ";
         $sql .= "(person_id, nip, ";
-        $sql .= "password) ";
+        $sql .= "hashed_password) ";
         $sql .= "VALUES (?, ?, ?)";
 
         if ($stmt = mysqli_prepare($db, $sql)) {
             // bind varaibles to prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "iss", $client_auth['person_id'], $client_auth['nip'], $client_auth['password']);
+            mysqli_stmt_bind_param($stmt, "iss", $client_auth['person_id'], $client_auth['nip'], $client_auth['hashed_password']);
 
             // execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
+                // Close statement
+                mysqli_stmt_close($stmt);
                 return true;
             } else {
                 // insert execute failled
                 echo mysqli_error();
+                // Close statement
+                mysqli_stmt_close($stmt);
                 db_disconnect($db);
                 exit();
             }
@@ -110,10 +137,14 @@
 
             // execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
+                // Close statement
+                mysqli_stmt_close($stmt);
                 return true;
             } else {
                 // insert execute failled
                 echo mysqli_error();
+                // Close statement
+                mysqli_stmt_close($stmt);
                 db_disconnect($db);
                 exit();
             }
@@ -139,10 +170,48 @@
 
             // execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
+                // Close statement
+                mysqli_stmt_close($stmt);
                 return true;
             } else {
                 // insert execute failled
                 echo mysqli_error();
+                // Close statement
+                mysqli_stmt_close($stmt);
+                db_disconnect($db);
+                exit();
+            }
+        } else {
+            // insert preparement failled
+            echo mysqli_error();
+            db_disconnect($db);
+            exit();
+        }
+    }
+
+    function insert_individual($individual)
+    {
+        global $db;
+
+        // prepare an insert statement
+        $sql = "INSERT INTO individuals ";
+        $sql .= "(person_id, iban_id) ";
+        $sql .= "VALUES (?, ?)";
+
+        if ($stmt = mysqli_prepare($db, $sql)) {
+            // bind varaibles to prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "ii", $individual['person_id'], $individual['iban_id']);
+
+            // execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                // Close statement
+                mysqli_stmt_close($stmt);
+                return true;
+            } else {
+                // insert execute failled
+                echo mysqli_error();
+                // Close statement
+                mysqli_stmt_close($stmt);
                 db_disconnect($db);
                 exit();
             }
@@ -158,6 +227,11 @@
     {
         global $db;
         
+        $errors = validate_account($account);
+        if (!empty($errors)) {
+            return $errors;
+        }
+
         // prepare an insert statement
         $sql = "INSERT INTO accounts ";
         $sql .= "(account_type_id, iban_id, ";
@@ -172,10 +246,14 @@
 
             // execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
+                // Close statement
+                mysqli_stmt_close($stmt);
                 return true;
             } else {
                 // insert execute failled
                 echo mysqli_error();
+                // Close statement
+                mysqli_stmt_close($stmt);
                 db_disconnect($db);
                 exit();
             }
@@ -185,4 +263,44 @@
             db_disconnect($db);
             exit();
         }
+    }
+
+    function find_client_auth_by_nip($nip)
+    {
+        global $db;
+
+        $sql = "SELECT * FROM client_auths ";
+        $sql .= "WHERE nip='" . db_escape($db, $nip) . "'";
+
+        $result = mysqli_query($db, $sql);
+        confirm_result_set($result);
+        $client_auth = mysqli_fetch_assoc($result);
+        mysqli_free_result($result);
+        return $client_auth;
+    }
+    function find_iban_by_iban_number($iban_number)
+    {
+        global $db;
+
+        $sql = "SELECT * FROM ibans ";
+        $sql .= "WHERE iban_number='" . db_escape($db, $iban_number) . "'";
+
+        $result = mysqli_query($db, $sql);
+        confirm_result_set($result);
+        $iban = mysqli_fetch_assoc($result);
+        mysqli_free_result($result);
+        return $iban;
+    }
+    function find_account_by_account_number($account_number)
+    {
+        global $db;
+
+        $sql = "SELECT * FROM accounts ";
+        $sql .= "WHERE account_number='" . db_escape($db, $account_number) . "'";
+
+        $result = mysqli_query($db, $sql);
+        confirm_result_set($result);
+        $account = mysqli_fetch_assoc($result);
+        mysqli_free_result($result);
+        return $account;
     }

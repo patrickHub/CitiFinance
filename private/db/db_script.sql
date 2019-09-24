@@ -32,7 +32,7 @@ CREATE TABLE client_auths(
 	client_auth_id INT(11) PRIMARY KEY AUTO_INCREMENT,
     person_id INT(11) NOT NULL UNIQUE,
     nip CHAR(9) NOT NULL UNIQUE,
-    password CHAR(255) NOT NULL, 
+    hashed_password VARCHAR(255) NOT NULL, 
     
 	CONSTRAINT client_auths_persons_fk FOREIGN KEY (person_id) REFERENCES persons(person_id)
 );
