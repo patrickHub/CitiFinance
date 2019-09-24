@@ -1,6 +1,7 @@
 CREATE DATABASE IF NOT EXISTS citifinancedb;
-GRANT ALL PRIVILEGES ON citifiancedb.* TO 
-'webuser'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON citifinancedb.* TO 
+'webphpuser'@'localhost' IDENTIFIED BY 'password';
+
 
 USE citifinancedb;
 

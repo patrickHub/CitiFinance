@@ -10,6 +10,7 @@
     define("PUBLIC_PATH", PROJECT_PATH . "/public");
     define("SHARED_PATH", PRIVATE_PATH . "/shared");
     define("DB_PATH", PRIVATE_PATH . "/db");
+    define("DAO_PATH", PRIVATE_PATH . "/dao");
 
     // Assign the root URL to a PHP constant
     // * Do not need to include the domain
@@ -23,3 +24,7 @@
     define("WWW_ROOT", $doc_root);
 
     require_once('functions.php');
+    require_once(DB_PATH . '/db.php');
+    require_once(DAO_PATH . '/account_dao.php');
+
+    $db = db_connect();
