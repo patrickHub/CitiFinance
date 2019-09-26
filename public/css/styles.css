@@ -19,9 +19,37 @@ a {
 main {
   margin-top: 125px;
 }
+.btn-next {
+  padding: 16px 70px;
+  font-size: 17px;
+  color: #fff;
+  background-color: #eb1f1b;
+  border: none;
+}
+.btn-next:hover {
+  padding: 14px 68px;
+  font-size: 17px;
+  color: #fff;
+  background-color: #eb1f1b;
+  border: 2px solid #fff;
+}
+.btn-back {
+  padding: 16px 70px;
+  font-size: 17px;
+  color: #000;
+  background-color: #fff;
+  border: none;
+}
+.btn-back:hover {
+  padding: 14px 68px;
+  font-size: 17px;
+  color: #000;
+  background-color: #fff;
+  border: 2px solid #eb1f1b;
+}
 
 /*--------------- -----Headers--------------------- */
-header {
+.public-header {
   position: relative;
 }
 .top-login {
@@ -272,4 +300,138 @@ nav .logo {
 }
 .footer-row .legal-info a:hover {
   text-decoration-line: underline;
+}
+
+/*--------------------Open-account-title--------------------- */
+
+@media (min-width: 967px) {
+  .open-account-title {
+    text-align: center;
+    margin: 225px 15% 0 15%;
+    justify-content: center;
+    font-size: 0px;
+  }
+  .open-account-title h1 {
+    font-size: 30px;
+    margin-bottom: 50px;
+  }
+
+  .open-account-title .step a {
+    display: inline-block;
+    padding: 7px 30px;
+    font-size: 14px;
+    border-bottom: 5px solid #000;
+    border-right: 2px solid #fff;
+  }
+  .open-account-title a p {
+    display: inline;
+  }
+  .open-account-title a span {
+    display: none;
+  }
+}
+@media (max-width: 966px) {
+  .open-account-title {
+    width: 90%;
+    max-width: 667px;
+    margin: 0 auto;
+    margin-top: 200px;
+    text-align: center;
+    font-size: 0px;
+  }
+  .open-account-title h1 {
+    font-size: 25px;
+    margin-bottom: 50px;
+  }
+  .open-account-title .step a {
+    display: inline-block;
+    width: 25%;
+    padding: 7px 20px;
+    font-size: 11px;
+    border-bottom: 5px solid #000;
+    border-right: 2px solid #fff;
+  }
+  .open-account-title a p {
+    display: none;
+  }
+  .open-account-title a span {
+    display: inline;
+  }
+}
+
+/*--------------------Open-account-intro--------------------- */
+
+@media (min-width: 967px) {
+  .open-account-intro {
+    width: 70%;
+  }
+}
+@media (max-width: 966px) {
+  .open-account-intro {
+    width: 90%;
+  }
+}
+.open-account-intro {
+  max-width: 667px;
+  margin: 0 auto;
+  margin-top: 50px;
+  background-color: #f2f2f2;
+  font-size: 17px;
+}
+.open-account-intro header {
+  display: flex;
+  padding: 30px 30px;
+  border-bottom: 1px solid #e3e0e0;
+}
+.open-account-intro footer {
+  padding: 30px 30px;
+  border-top: 1px solid #e3e0e0;
+  text-align: end;
+}
+.open-account-intro .col-1 img {
+  width: 32px;
+}
+.open-account-intro .col-2 {
+  display: flex;
+  align-items: center;
+}
+.open-account-intro header .col-2 span {
+  padding-left: 13px;
+}
+@media (max-width: 750px) {
+  .open-account-intro .main-content {
+    display: block;
+    padding: 30px;
+  }
+  .open-account-intro .main-content .col-1 {
+    margin-bottom: 10px;
+  }
+}
+@media (min-width: 750px) {
+  .open-account-intro .main-content {
+    display: flex;
+    padding: 30px;
+  }
+  .open-account-intro .main-content .col-1 {
+    max-width: 30%;
+    min-width: 182px;
+    margin-right: 20px;
+  }
+}
+.open-account-intro .main-content input[type="radio"] {
+  width: 22px;
+  height: 16px;
+}
+
+.open-account-intro .main-content .col-2 {
+  display: block;
+}
+.open-account-intro .main-content .col-2 .col-2-row {
+  display: flex;
+}
+.open-account-intro .main-content .col-2 .col-2-row div:nth-of-type(2) {
+  padding-left: 10px;
+}
+.open-account-intro .main-content .col-2 .col-2-row div:nth-of-type(2) p {
+  display: none;
 }

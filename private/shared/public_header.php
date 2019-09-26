@@ -1,4 +1,3 @@
-<?php require_once('../private/initialize.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,15 +13,16 @@
         ?> 
     </title>
     <script src="https://use.fontawesome.com/6e47fdd73a.js"></script>
+    <script type="text/javascript" src="<?php echo url_for('/js/public.js'); ?>"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Assistant:300|Gothic+A1:300|Noto+Sans+SC:300|Saira:500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="<?php echo url_for('/css/styles.css'); ?>" />
   </head>
   <body>
     <!-- // Intro -->
-    <header>
+    <header class="public-header">
         <div class="top-login">
-            <a href="#">Open an Account</a>
+            <a href="<?php echo url_for('/accounts/open-individual-account.php?step=1'); ?>">Open an Account</a>
             <a href="#"><img src="<?php echo url_for('/images/landingpage_assets/icons8-lock-50.png'); ?>" > <strong>Login</strong></a>
 
         </div>
