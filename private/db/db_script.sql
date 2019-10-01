@@ -10,8 +10,8 @@ CREATE TABLE persons(
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     birthdate DATE NOT NULL,
-    place_birth VARCHAR(255) NOT NULL,
-    nationality VARCHAR(30) NOT NULL,
+    nationality VARCHAR(255) NOT NULL,
+    sex CHAR(1) NOT NULL,
     phone_number CHAR(13) NOT NULL,
     email VARCHAR(255) NOT NULL
 );
@@ -19,8 +19,8 @@ CREATE TABLE persons(
 CREATE TABLE address(
 	address_id INT(11) PRIMARY KEY AUTO_INCREMENT,
     person_id INT(11) NOT NULL,
-    country VARCHAR(30) NOT NULL,
-    city VARCHAR(30) NOT NULL,
+    country VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL,
     npa INT(5) NOT NULL,
     street VARCHAR(255) NOT NULL,
     address_status VARCHAR(15) NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE client_auths(
 
 CREATE TABLE ibans(
 	iban_id INT(11) PRIMARY KEY AUTO_INCREMENT,
-    iban_number CHAR(20) NOT NULL UNIQUE
+    iban_number CHAR(26) NOT NULL UNIQUE
 );
 
 CREATE TABLE account_types(
@@ -103,7 +103,7 @@ CREATE TABLE bank_cards(
 	bank_card_id INT(11) PRIMARY KEY AUTO_INCREMENT,
     card_type_id INT(11) NOT NULL,
 	iban_id INT(11) NOT NULL,
-    bin CHAR(20) NOT NULL UNIQUE,
+    bin CHAR(19) NOT NULL UNIQUE,
 	balance DECIMAL(15, 2) NOT NULL/* the balance never exceed 1 000 000 000 000.00 */,
     creation_date DATE NOT NULL,
     expired_date DATE NOT NULL,

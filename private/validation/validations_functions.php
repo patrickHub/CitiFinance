@@ -100,7 +100,10 @@
   function has_valid_email_format($value)
   {
       $email_regex = '/\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\Z/i';
-      return filter_var($value, FILTER_VALIDATE_EMAIL) === 1;
+      if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
+          return false;
+      }
+      return true;
   }
   function has_valid_date_format($value)
   {
@@ -109,6 +112,24 @@
           return true;
       }
       return false;
+  }
+  function has_valid_phone_format($value)
+  {
+      $date_regex = '/^0[2-9]{9}/';
+      if (preg_match($date_regex, $value)) {
+          return true;
+      }
+      return false;
+  }
+  // check that a person age is over 18 by default
+  function has_age_over($brithdate, $age=18)
+  {
+      $brithdate = strtotime($brithdate);
+      // 31536000 is number of second in one year
+      if (time() - $brithdate < $age * 31536000) {
+          return false;
+      }
+      return true;
   }
 
   function has_unique_nip($nip)

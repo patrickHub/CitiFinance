@@ -17,7 +17,27 @@
 
     <link href="https://fonts.googleapis.com/css?family=Assistant:300|Gothic+A1:300|Noto+Sans+SC:300|Saira:500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo url_for('/css/styles.css'); ?>" />
-  </head>
+    <?php
+        echo "<style> ";
+            if (isset($step) &&  in_array($step, [1,2,3,4,5])) {
+                echo ".open-account-title .step .link-step-1::before { background-color: #eb1f1b;}";
+            }
+            if (isset($step) &&  in_array($step, [2,3,4,5])) {
+                echo ".open-account-title .step .link-step-2::before { background-color: #eb1f1b;}";
+            }
+            if (isset($step) &&  in_array($step, [3,4,5])) {
+                echo ".open-account-title .step .link-step-2::after { background-color: #eb1f1b;}";
+            }
+            if (isset($step) &&  in_array($step, [4,5])) {
+                echo ".open-account-title .step .link-step-3::before { background-color: #eb1f1b;}";
+            }
+            if (isset($step) &&  in_array($step, [5])) {
+                echo ".open-account-title .step .link-step-4::before { background-color: #eb1f1b;}";
+            }
+           
+        echo "</style>";
+    ?>
+</head>
   <body>
     <!-- // Intro -->
     <header class="public-header">

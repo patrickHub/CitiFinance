@@ -38,7 +38,7 @@ main {
   font-size: 17px;
   color: #000;
   background-color: #fff;
-  border: none;
+  border: 1px solid #e3e0e0;
 }
 .btn-back:hover {
   padding: 14px 68px;
@@ -47,6 +47,9 @@ main {
   background-color: #fff;
   border: 2px solid #eb1f1b;
 }
+.flex {
+  display: flex;
+}
 
 /*--------------- -----Headers--------------------- */
 .public-header {
@@ -54,6 +57,7 @@ main {
 }
 .top-login {
   position: fixed;
+  z-index: 1;
   top: 0;
   left: 0;
   right: 0;
@@ -82,6 +86,7 @@ main {
 
 nav {
   position: fixed;
+  z-index: 1;
   top: 50px;
   left: 0;
   right: 0;
@@ -317,16 +322,14 @@ nav .logo {
   }
 
   .open-account-title .step a {
-    display: inline-block;
     padding: 7px 30px;
     font-size: 14px;
-    border-bottom: 5px solid #000;
-    border-right: 2px solid #fff;
   }
-  .open-account-title a p {
+
+  .open-account-title .step a p {
     display: inline;
   }
-  .open-account-title a span {
+  .open-account-title .step a span {
     display: none;
   }
 }
@@ -344,94 +347,246 @@ nav .logo {
     margin-bottom: 50px;
   }
   .open-account-title .step a {
-    display: inline-block;
     width: 25%;
     padding: 7px 20px;
     font-size: 11px;
-    border-bottom: 5px solid #000;
-    border-right: 2px solid #fff;
   }
-  .open-account-title a p {
+  .open-account-title .step a p {
     display: none;
   }
-  .open-account-title a span {
+  .open-account-title .step a span {
     display: inline;
   }
+}
+.open-account-title .step a {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 12px;
+  border-right: 2px solid #fff;
+}
+.open-account-title .step a::before {
+  content: "";
+  width: 100%;
+  height: 5px;
+  background-color: #000;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.open-account-title .step .link-step-2::before {
+  content: "";
+  width: 50%;
+  height: 5px;
+  background-color: #000;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.open-account-title .step .link-step-2::after {
+  content: "";
+  width: 49%;
+  height: 5px;
+  background-color: #000;
+  position: absolute;
+  bottom: 0;
+  left: 51%;
 }
 
 /*--------------------Open-account-intro--------------------- */
 
 @media (min-width: 967px) {
-  .open-account-intro {
+  .open-account {
     width: 70%;
   }
 }
 @media (max-width: 966px) {
-  .open-account-intro {
+  .open-account {
     width: 90%;
   }
 }
-.open-account-intro {
+.open-account {
   max-width: 667px;
   margin: 0 auto;
   margin-top: 50px;
   background-color: #f2f2f2;
   font-size: 17px;
 }
-.open-account-intro header {
-  display: flex;
+.open-account header {
   padding: 30px 30px;
   border-bottom: 1px solid #e3e0e0;
 }
-.open-account-intro footer {
+.open-account header .row-1 {
+  display: flex;
+}
+.open-account footer {
   padding: 30px 30px;
   border-top: 1px solid #e3e0e0;
   text-align: end;
 }
-.open-account-intro .col-1 img {
-  width: 32px;
-}
-.open-account-intro .col-2 {
+.open-account header .col-1 {
   display: flex;
   align-items: center;
 }
-.open-account-intro header .col-2 span {
+.open-account .col-1 img {
+  width: 32px;
+  max-height: 40;
+}
+.open-account .col-2 {
+  display: flex;
+  align-items: center;
+}
+.open-account .col-2 h3 {
+  padding-left: 10px;
+  font-size: 20px;
+}
+.open-account header .col-2 span {
   padding-left: 13px;
 }
 @media (max-width: 750px) {
-  .open-account-intro .main-content {
-    display: block;
-    padding: 30px;
+  .open-account .main-content {
+    padding: 0 30px 30px 30px;
   }
-  .open-account-intro .main-content .col-1 {
+  .open-account .main-content .row {
+    display: block;
+    margin-top: 30px;
+  }
+  .open-account .main-content .col-1 {
     margin-bottom: 10px;
   }
 }
 @media (min-width: 750px) {
-  .open-account-intro .main-content {
-    display: flex;
-    padding: 30px;
+  .open-account .main-content {
+    padding: 0 30px 30px 30px;
   }
-  .open-account-intro .main-content .col-1 {
+  .open-account .main-content .row {
+    display: flex;
+    margin-top: 30px;
+  }
+  .open-account .main-content .col-1 {
+    display: flex;
     max-width: 30%;
     min-width: 182px;
     margin-right: 20px;
   }
 }
-.open-account-intro .main-content input[type="radio"] {
+.open-account .main-content .row-error {
+  display: flex;
+  color: #eb1f1b;
+  font-size: 14px;
+}
+.open-account .main-content input[type="radio"] {
   width: 22px;
   height: 16px;
 }
 
-.open-account-intro .main-content .col-2 {
+.open-account .main-content .col-2 {
   display: block;
+  width: 90%;
 }
-.open-account-intro .main-content .col-2 .col-2-row {
-  display: flex;
+.open-account .main-content .col-2 .col-2-row {
+  position: relative;
 }
-.open-account-intro .main-content .col-2 .col-2-row div:nth-of-type(2) {
+.open-account .main-content .col-2 .col-2-row div:nth-of-type(2) {
   padding-left: 10px;
 }
-.open-account-intro .main-content .col-2 .col-2-row div:nth-of-type(2) p {
+.open-account .main-content .col-2 .col-2-row div:nth-of-type(2) p {
   display: none;
+}
+.open-account .form-input {
+  position: relative;
+}
+.open-account .form-date {
+  max-width: 175px;
+}
+.open-account .input {
+  width: 100%;
+  padding: 7px;
+  font-size: 17px;
+  letter-spacing: 1px;
+  border: 0;
+  color: #444;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #888;
+  outline: none;
+}
+.open-account .input-select {
+  width: 100%;
+  padding: 7px;
+  font-size: 17px;
+  letter-spacing: 1px;
+  color: #444;
+  background-color: #f2f2f2;
+  border: 1px solid #888;
+  outline: none;
+  -webkit-appearance: button;
+}
+.open-account .form-select:before {
+  content: "\f13a";
+  font-family: "fontAwesome";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 10%;
+  height: 100%;
+  text-align: center;
+  font-size: 20px;
+  line-height: 40px;
+  color: #444;
+  pointer-events: none;
+}
+.open-account .form-select:hover::before {
+  background-color: #ccc;
+  border: 1px solid #888;
+  border-left: none;
+}
+.open-account .form-phone {
+  padding-left: 15%;
+}
+.open-account .form-phone::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15%;
+  height: 100%;
+  text-align: center;
+  background-image: url("../images/landingpage_assets/icons8-switzerland-48.png");
+  background-repeat: no-repeat;
+  background-size: 28px;
+  background-position: 11px 4px;
+  border-bottom: 1px solid #888;
+}
+.open-account .input ~ .input-focus-border {
+  padding: 8px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-left: 1px solid #888;
+  border-right: 1px solid #888;
+}
+.open-account .input ~ .input-focus-border:before,
+.open-account .input ~ .input-focus-border:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #eb1f1b;
+  transition: 0.4s;
+}
+.open-account .input ~ .input-focus-border:after {
+  left: auto;
+  right: 0;
+}
+.open-account .input:focus ~ .input-focus-border:before,
+.open-account .input:focus ~ .input-focus-border:after {
+  width: 50%;
+  transition: 0.4s;
+}
+.open-account .input:focus ~ .input-focus-border {
+  border-left: 2px solid #eb1f1b;
+  border-right: 0;
 }

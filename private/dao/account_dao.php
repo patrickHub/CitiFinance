@@ -13,13 +13,13 @@
         $sql = "INSERT INTO persons ";
         $sql .= "(first_name, last_name, ";
         $sql .= "birthdate, place_birth, ";
-        $sql .= "nationality, phone_number, ";
+        $sql .= "nationality, sex, phone_number, ";
         $sql .="email) ";
-        $sql .= "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql .= "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         if ($stmt = mysqli_prepare($db, $sql)) {
             // bind varaibles to prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sssssss", $person['first_name'], $person['last_name'], $person['birthdate'], $person['place_birth'], $person['nationality'], $person['phone_number'], $person['email']);
+            mysqli_stmt_bind_param($stmt, "ssssssss", $person['first_name'], $person['last_name'], $person['birthdate'], $person['place_birth'], $person['nationality'], $person['sex'], $person['phone_number'], $person['email']);
 
             // execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {

@@ -1,3 +1,7 @@
+$(function() {
+  $("#datepicker").datepicker();
+});
+
 function showOnRadioCheck(tagId) {
   switch (tagId) {
     case "radio-new-customer": {

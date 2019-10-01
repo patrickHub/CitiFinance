@@ -1,7 +1,7 @@
 <?php
 
     ob_start(); // turn on output buffering
-
+    session_start(); // turn on the session
     // Assign file paths to PHP constants
     // __FILE__ returns the current path to this file
     // dirname() returns the path to the parent directory
@@ -11,6 +11,7 @@
     define("SHARED_PATH", PRIVATE_PATH . "/shared");
     define("DB_PATH", PRIVATE_PATH . "/db");
     define("DAO_PATH", PRIVATE_PATH . "/dao");
+    define("VALIDATION", PRIVATE_PATH . "/validation");
 
     // Assign the root URL to a PHP constant
     // * Do not need to include the domain
@@ -26,5 +27,7 @@
     require_once('functions.php');
     require_once(DB_PATH . '/db.php');
     require_once(DAO_PATH . '/account_dao.php');
+    require_once(SHARED_PATH . '/countries_list.php');
+    require_once(VALIDATION . '/validate_account_functions.php');
 
     $db = db_connect();

@@ -1,8 +1,15 @@
 <?php
+    require_once('validations_functions.php');
     function validate_person($person)
     {
         $errors = [];
 
+        // sex
+        if (is_blank($person['sex'])) {
+            $errors['sex'] = "Title is mandatory!";
+        } elseif (!has_length($person['sex'], ['min' => 1, 'max' => 1])) {
+            $errors['sex'] = "Title must be between 1 caractere!";
+        }
         // first_name
         if (is_blank($person['first_name'])) {
             $errors['first_name'] = "First name can not be blank!";
@@ -19,30 +26,28 @@
 
         // birthdate
         if (is_blank($person['birthdate'])) {
-            $errors['birthdate'] = "Birth date can not be blank!";
+            $errors['birthdate'] = "Birth date is mandatory!";
         } elseif (!has_valid_date_format($person['birthdate'])) {
             $errors['birthdate'] = "Birth date format must be 'YYYY-MM-DD'!";
+        } elseif (!has_age_over($person['birthdate'])) {
+            $errors['birthdate'] = "Sorry you should be more than 18 years old.";
         }
 
-        // place_birth
-        if (is_blank($person['place_birth'])) {
-            $errors['place_birth'] = "Place of birth can not be blank!";
-        } elseif (!has_length($person['place_birth'], ['min' => 2, 'max' => 255])) {
-            $errors['place_birth'] = "Place of birth must be between 2 and 255 caracteres!";
-        }
 
         // nationality
         if (is_blank($person['nationality'])) {
-            $errors['nationality'] = "Nationality can not be blank!";
-        } elseif (!has_length($person['Nationality'], ['min' => 2, 'max' => 30])) {
-            $errors['nationality'] = "Nationality must be between 2 and 30 caracteres!";
+            $errors['nationality'] = "Nationality is mandatory!";
+        } elseif (!has_length($person['nationality'], ['min' => 2, 'max' => 255])) {
+            $errors['nationality'] = "Nationality must be between 2 and 255 caracteres!";
         }
 
         // phone_number
         if (is_blank($person['phone_number'])) {
             $errors['phone_number'] = "Phone number can not be blank!";
-        } elseif (!has_length_exactly($person['phone_number'], 30)) {
-            $errors['phone_number'] = "Phone number must be 30 caracteres!";
+        } elseif (!has_length_exactly($person['phone_number'], 10)) {
+            $errors['phone_number'] = "Phone number must be 10 caracteres!";
+        } elseif (!has_valid_phone_format($person['phone_number'])) {
+            $errors['phone_number'] = "Phone number must be valid.";
         }
 
         // email
