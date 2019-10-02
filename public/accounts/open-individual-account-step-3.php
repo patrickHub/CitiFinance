@@ -16,7 +16,7 @@
                <span>We need the following information in order
                     to process your order. Your details will be 
                     treated confidentially. All data is sent in 
-                    encrypted forme
+                    encrypted form
                </span>
            </div>
        </header>

@@ -103,18 +103,18 @@
         $errors = [];
 
         // password
-        if (is_blank($client_auth['hashed_password'])) {
-            $errors['hashed_password'] = "Password can not be blank!";
-        } elseif (!has_length($client_auth['hashed_password'], ['min'=>9, 'max'=>255])) {
-            $errors['hashed_password'] = "Password must be between 9 and 255 caracteres!";
-        } elseif (!has_valid_password_format($client_auth['hashed_password'])) {
-            $errors['hashed_password'] = "Password must have a least 1 uppercase, 1 lowercase, 1 number and 1 symbol.";
+        if (is_blank($client_auth['password'])) {
+            $errors['password'] = "Password is mandatory!";
+        } elseif (!has_length($client_auth['password'], ['min'=>9, 'max'=>255])) {
+            $errors['password'] = "Password must be between 9 and 255 caracteres!";
+        } elseif (!has_valid_password_format($client_auth['password'])) {
+            $errors['password'] = "Password must have a least 1 uppercase, 1 lowercase, 1 number and 1 symbol.";
         }
 
         // confirm_password
         if (is_blank($client_auth['confirm_password'])) {
-            $errors['confirm_password'] = "Confirm Password cannot be blank.";
-        } elseif (($client_auth['confirm_password'] !== $client_auth['hashed_password'])) {
+            $errors['confirm_password'] = "Confirm password is mandaotory!";
+        } elseif (($client_auth['confirm_password'] !== $client_auth['password'])) {
             $errors['confirm_password'] = "Password and Confirm Password must match.";
         }
 
@@ -132,6 +132,8 @@
             $errors['overdraft'] = "Overdraft can not be blank!";
         } elseif ($overdraft > 1000000.00) {
             $errors['overdraft'] = "Overdraft must be less than or egal to 1 000 000!";
+        } elseif (!ctype_digit($account['overdraft'])) {
+            $errors['overdraft'] = "Overdraft must be valid!";
         }
         return $errors;
     }

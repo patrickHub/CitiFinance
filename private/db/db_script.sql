@@ -48,6 +48,10 @@ CREATE TABLE account_types(
     type_name VARCHAR(255) NOT NULL UNIQUE
 );
 
+INSERT INTO account_types(type_name) VALUES('Checking account');
+INSERT INTO account_types(type_name) VALUES('Saving account');
+INSERT INTO account_types(type_name) VALUES('Certificate of deposit account');
+INSERT INTO account_types(type_name) VALUES('Retirement account');
 
 CREATE TABLE accounts(
 	account_id INT(11) PRIMARY KEY AUTO_INCREMENT,

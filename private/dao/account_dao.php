@@ -91,6 +91,9 @@
         if (!empty($errors)) {
             return $errors;
         }
+        // encrypt password before save to the db
+        $hashed_password = password_hash($client_auth['password'], PASSWORD_BCRYPT);
+
 
         // prepare an insert statement
         $sql = "INSERT INTO client_auths ";
@@ -100,7 +103,7 @@
 
         if ($stmt = mysqli_prepare($db, $sql)) {
             // bind varaibles to prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "iss", $client_auth['person_id'], $client_auth['nip'], $client_auth['hashed_password']);
+            mysqli_stmt_bind_param($stmt, "iss", $client_auth['person_id'], $client_auth['nip'], $hashed_password);
 
             // execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {

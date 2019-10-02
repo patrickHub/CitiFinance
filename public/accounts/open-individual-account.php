@@ -5,6 +5,7 @@
     $step = $_GET['step'] ?? 1;
     $new_customer_error = false;
     $person = [];
+    $person['person_id'] = '';
     $person['first_name'] = '';
     $person['last_name'] = '';
     $person['birthdate'] = '';
@@ -18,6 +19,14 @@
     $address['npa'] = '';
     $address['city'] = '';
     $address['country'] = '';
+    $address['address_status'] = '';
+
+    $client_auth = [];
+    $client_auth['password'] = '';
+    $client_auth['confirm_password'] = '';
+    $client_auth['nip'] = '';
+    $client_auth['person_id'] = '';
+
 
     $errors = [];
     if (is_post_request()) {
@@ -70,6 +79,21 @@
             } else {
                 $step = 3;
             }
+        } elseif (isset($_SESSION['step']) && $_SESSION['step'] == 4 || isset($_POST['password'])) {
+            
+            // process informations on the password of the account
+            $client_auth['password'] = $_POST['password'];
+            $client_auth['confirm_password'] = $_POST['confirm_password'];
+
+            $errors = validate_client_auth($client_auth);
+            $_SESSION['client_auth'] = $client_auth;
+
+            if (empty($errors)) {
+                $_SESSION['step'] = 5;
+                $step = 5;
+            } else {
+                $step = 4;
+            }
         } else {
             $new_customer_error = true;
             $step = 1;
@@ -104,7 +128,7 @@
         } elseif ($step == 3 && isset($_SESSION['person'])) {
             include_once('open-individual-account-step-3.php');
         } elseif ($step == 4 && isset($_SESSION['address'])) {
-            // include_once('open-individual-account-step-3.php');
+            include_once('open-individual-account-step-4.php');
         }
     ?>
 </main>
