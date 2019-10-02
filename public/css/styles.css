@@ -50,6 +50,9 @@ main {
 .flex {
   display: flex;
 }
+.inline-block {
+  display: inline-block;
+}
 
 /*--------------- -----Headers--------------------- */
 .public-header {
@@ -492,13 +495,34 @@ nav .logo {
 .open-account .main-content .col-2 .col-2-row div:nth-of-type(2) p {
   display: none;
 }
+
+.open-account .main-content .grid-npa-city {
+  display: inline-grid;
+  grid-template-columns: 30% 70%;
+  align-items: baseline;
+}
+.open-account .main-content .col-2 .grid-npa-city div:nth-of-type(2) {
+  padding-left: 0;
+}
 .open-account .form-input {
+  display: flex;
   position: relative;
 }
 .open-account .form-date {
   max-width: 175px;
 }
 .open-account .input {
+  width: 100%;
+  padding: 7px;
+  font-size: 17px;
+  letter-spacing: 1px;
+  border: 0;
+  color: #444;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #888;
+  outline: none;
+}
+.input-npa {
   width: 100%;
   padding: 7px;
   font-size: 17px;
@@ -556,7 +580,8 @@ nav .logo {
   background-position: 11px 4px;
   border-bottom: 1px solid #888;
 }
-.open-account .input ~ .input-focus-border {
+.open-account .input ~ .input-focus-border,
+.open-account .input-npa ~ .input-npa-focus-border {
   padding: 8px;
   position: absolute;
   bottom: 0;
@@ -567,7 +592,9 @@ nav .logo {
   border-right: 1px solid #888;
 }
 .open-account .input ~ .input-focus-border:before,
-.open-account .input ~ .input-focus-border:after {
+.open-account .input ~ .input-focus-border:after,
+.open-account .input-npa ~ .input-npa-focus-border:before,
+.open-account .input-npa ~ .input-npa-focus-border:after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -577,16 +604,20 @@ nav .logo {
   background-color: #eb1f1b;
   transition: 0.4s;
 }
-.open-account .input ~ .input-focus-border:after {
+.open-account .input ~ .input-focus-border:after,
+.open-account .input-npa ~ .input-npa-focus-border:after {
   left: auto;
   right: 0;
 }
 .open-account .input:focus ~ .input-focus-border:before,
-.open-account .input:focus ~ .input-focus-border:after {
+.open-account .input:focus ~ .input-focus-border:after,
+.open-account .input-npa:focus ~ .input-npa-focus-border:before,
+.open-account .input-npa:focus ~ .input-npa-focus-border:after {
   width: 50%;
   transition: 0.4s;
 }
-.open-account .input:focus ~ .input-focus-border {
+.open-account .input:focus ~ .input-focus-border,
+.open-account .input-npa:focus ~ .input-npa-focus-border {
   border-left: 2px solid #eb1f1b;
   border-right: 0;
 }

@@ -68,24 +68,26 @@
         
         // country
         if (is_blank($address['country'])) {
-            $errors['country'] = "Country can not be blank!";
-        } elseif (!has_length_less_than($address['country'], 30)) {
-            $errors['country'] = "Country must be less than 30 caracteres!";
+            $errors['country'] = "Country is mandatory!";
+        } elseif (!has_length_less_than($address['country'], 255)) {
+            $errors['country'] = "Country must be less than 255 caracteres!";
         }
 
         // city
         if (is_blank($address['city'])) {
-            $errors['city'] = "City can not be blank!";
-        } elseif (!has_length_less_than($address['city'], 30)) {
-            $errors['city'] = "City must be less than 30 caracteres!";
+            $errors['city'] = "City is mandatory!";
+        } elseif (!has_length_less_than($address['city'], 255)) {
+            $errors['city'] = "City must be less than 255 caracteres!";
         }
 
         // npa
         $npa = (int)$address['npa'];
         if (is_blank($address['npa'])) {
-            $errors['npa'] = "NPA can not be blank!";
+            $errors['npa'] = "Post code is mandatory!";
         } elseif ($npa > 99999) {
-            $errors['npa'] = "NPA must be less than 100 000!";
+            $errors['npa'] = "Post code must be less than 100 000!";
+        } elseif (!ctype_digit($address['npa'])) {
+            $errors['npa'] = "Post code must be valid!";
         }
 
         // street

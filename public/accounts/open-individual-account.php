@@ -1,4 +1,5 @@
 <?php require_once('../../private/initialize.php'); ?>
+<?php $page_title = 'Open account'; ?>
 
 <?php
     $step = $_GET['step'] ?? 1;
@@ -11,6 +12,12 @@
     $person['sex'] = '';
     $person['phone_number'] = '';
     $person['email'] = '';
+
+    $address = [];
+    $address['street'] = '';
+    $address['npa'] = '';
+    $address['city'] = '';
+    $address['country'] = '';
 
     $errors = [];
     if (is_post_request()) {
@@ -25,7 +32,7 @@
             } else {
                 // redirect_to('login.php');
             }
-        } elseif (isset($_SESSION['step']) && $_SESSION['step'] == 2) {
+        } elseif (isset($_SESSION['step']) && $_SESSION['step'] == 2 || isset($_POST['first_name'])) {
 
             // process informations on the identity of the person
             $person['first_name'] = $_POST['first_name'] ?? '';
@@ -46,9 +53,23 @@
             } else { //
                 $step = 2;
             }
-        } elseif (isset($_SESSION['step']) && $_SESSION['step'] == 3) {
+        } elseif (isset($_SESSION['step']) && $_SESSION['step'] == 3 || isset($_POST['street'])) {
             
             // process informations on the address of the person
+            $address['street'] = $_POST['street'] ?? '';
+            $address['npa'] = $_POST['npa'] ?? '';
+            $address['city'] = $_POST['city'] ?? '';
+            $address['country'] = $_POST['country'] ?? '';
+
+            $errors = validate_address($address);
+            $_SESSION['address'] = $address;
+
+            if (empty($errors)) {
+                $_SESSION['step'] = 4;
+                $step = 4;
+            } else {
+                $step = 3;
+            }
         } else {
             $new_customer_error = true;
             $step = 1;
@@ -81,6 +102,8 @@
         } elseif ($step == 2 && isset($_SESSION['new_customer'])) {
             include_once('open-individual-account-step-2.php');
         } elseif ($step == 3 && isset($_SESSION['person'])) {
+            include_once('open-individual-account-step-3.php');
+        } elseif ($step == 4 && isset($_SESSION['address'])) {
             // include_once('open-individual-account-step-3.php');
         }
     ?>
