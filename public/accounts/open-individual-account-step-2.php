@@ -177,7 +177,7 @@
                 <!-- Email -->
                 <div class="row">
                     <div class="col-1">
-                        <span>Phone number*</span>
+                        <span>Email*</span>
                     </div>
                     <div class="col-2">
                         <div class="col-2-row">

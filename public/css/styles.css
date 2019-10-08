@@ -20,28 +20,33 @@ main {
   margin-top: 125px;
 }
 .btn-next {
-  padding: 16px 70px;
+  width: 28%;
+  height: 50px;
+  min-width: 133.57px;
   font-size: 17px;
   color: #fff;
   background-color: #eb1f1b;
   border: none;
 }
 .btn-next:hover {
-  padding: 14px 68px;
   font-size: 17px;
   color: #fff;
   background-color: #eb1f1b;
   border: 2px solid #fff;
 }
 .btn-back {
-  padding: 16px 70px;
+  display: inline-flex;
+  width: 28%;
+  height: 50px;
+  min-width: 133.57px;
+  align-items: center;
+  justify-content: center;
   font-size: 17px;
   color: #000;
   background-color: #fff;
   border: 1px solid #e3e0e0;
 }
 .btn-back:hover {
-  padding: 14px 68px;
   font-size: 17px;
   color: #000;
   background-color: #fff;
@@ -376,7 +381,8 @@ nav .logo {
   bottom: 0;
   left: 0;
 }
-.open-account-title .step .link-step-2::before {
+.open-account-title .step .link-step-2::before,
+.open-account-title .step .link-step-3::before {
   content: "";
   width: 50%;
   height: 5px;
@@ -385,7 +391,8 @@ nav .logo {
   bottom: 0;
   left: 0;
 }
-.open-account-title .step .link-step-2::after {
+.open-account-title .step .link-step-2::after,
+.open-account-title .step .link-step-3::after {
   content: "";
   width: 49%;
   height: 5px;
@@ -398,16 +405,19 @@ nav .logo {
 /*--------------------Open-account-intro--------------------- */
 
 @media (min-width: 967px) {
-  .open-account {
+  .open-account,
+  .open-account-summarize {
     width: 70%;
   }
 }
 @media (max-width: 966px) {
-  .open-account {
+  .open-account,
+  .open-account-summarize {
     width: 90%;
   }
 }
-.open-account {
+.open-account,
+.open-account-summarize {
   max-width: 667px;
   margin: 0 auto;
   margin-top: 50px;
@@ -418,12 +428,19 @@ nav .logo {
   padding: 30px 30px;
   border-bottom: 1px solid #e3e0e0;
 }
+.open-account-summarize header {
+  padding: 30px;
+}
 .open-account header .row-1 {
   display: flex;
 }
 .open-account footer {
   padding: 30px 30px;
   border-top: 1px solid #e3e0e0;
+  text-align: end;
+}
+.open-account-summarize footer {
+  padding: 30px 30px;
   text-align: end;
 }
 .open-account header .col-1 {
@@ -472,7 +489,8 @@ nav .logo {
     margin-right: 20px;
   }
 }
-.open-account .main-content .row-error {
+.open-account .main-content .row-error,
+.open-account-summarize .main-content .row-error {
   display: flex;
   color: #eb1f1b;
   font-size: 14px;
@@ -620,4 +638,95 @@ nav .logo {
 .open-account .input-npa:focus ~ .input-npa-focus-border {
   border-left: 2px solid #eb1f1b;
   border-right: 0;
+}
+
+/*--------------------Open-account-summarize--------------------- */
+.open-account-summarize .main-content {
+  padding: 0 30px 30px 30px;
+}
+.open-account-summarize article {
+  padding-bottom: 30px;
+  border-top: 1px solid #e3e0e0;
+  border-bottom: 1px solid #e3e0e0;
+}
+.open-account-summarize img {
+  width: 32px;
+  max-height: 40;
+}
+
+.open-account-summarize .main-content article .head {
+  padding-bottom: 15px;
+}
+.open-account-summarize .main-content article .head .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.open-account-summarize .main-content article .head .row .title-img {
+  display: flex;
+  align-items: center;
+}
+.open-account-summarize .main-content article .head .row .title-text {
+  padding-left: 13px;
+}
+.open-account-summarize .main-content article .head .row .col-2 .link-update {
+  display: flex;
+  width: 100px;
+  height: 32px;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px solid #e3e0e0;
+  border-radius: 10px;
+  opacity: 0.8;
+}
+.open-account-summarize
+  .main-content
+  article
+  .head
+  .row
+  .col-2
+  .link-update:hover {
+  color: #222;
+  opacity: 1;
+  font-weight: bold;
+}
+.open-account-summarize
+  .main-content
+  article
+  .head
+  .row
+  .col-2
+  .link-update
+  img {
+  width: 20px;
+}
+.open-account-summarize .main-content article .data-list .row {
+  display: inline-grid;
+  grid-template-columns: 40% 60%;
+  width: 100%;
+  padding: 4px 0 4px 0;
+}
+.open-account-summarize .main-content article .data-list .row .col-2 {
+  text-overflow: ellipsis;
+  /*white-space: nowrap;*/
+  overflow: hidden;
+}
+.open-account-summarize .main-content .general-terms-conditions {
+  margin-top: 50px;
+}
+.open-account-summarize .main-content .general-terms-conditions .row {
+  display: flex;
+}
+.open-account-summarize .main-content .general-terms-conditions .col-1 {
+  width: 33px;
+  min-width: 33px;
+}
+.open-account-summarize .main-content .general-terms-conditions .col-2 {
+  display: flex;
+  align-items: center;
+}
+.open-account-summarize .main-content .general-terms-conditions input {
+  width: 19px;
+  height: 19px;
+  margin-right: 10px;
 }

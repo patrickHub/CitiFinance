@@ -27,8 +27,18 @@
     $client_auth['nip'] = '';
     $client_auth['person_id'] = '';
 
+    $account  = [];
+    $account['overdraft'] = '';
+    $account['account_type_id'] = '';
+    $account['iban_number'] = '';
+    $account['account_number'] = '';
+    $account['interest_rate'] = '';
+    $account['balance'] = '';
+    $account['owner_type'] = '';
+
 
     $errors = [];
+    $general_term_error = '';
     if (is_post_request()) {
 
         // first step process
@@ -94,6 +104,32 @@
             } else {
                 $step = 4;
             }
+        } elseif (isset($_SESSION['step']) && $_SESSION['step'] == 5 || isset($_POST['overdraft'])) {
+            
+            // process informations on the individual account
+            $account['overdraft'] = $_POST['overdraft'];
+            $account['account_type_id'] = $_POST['account_type_id'];
+
+            $errors = validate_account($account);
+            $_SESSION['account'] = $account;
+
+            if (empty($errors)) {
+                $_SESSION['step'] = 6;
+                $step = 6;
+            } else {
+                $step = 5;
+            }
+        } elseif (isset($_SESSION['step']) && $_SESSION['step'] == 6 || isset($_POST['terms_conditions'])) {
+            
+            // sommarize information on individual account
+            $terms_conditions = $_POST['terms_conditions'] ?? '';
+
+            if ($terms_conditions == 'Yes') {
+                // $_SESSION['account'] = $account;
+            } else {
+                $general_term_error = 'Please you need to accept the generals terms and conditions';
+                $step = 6;
+            }
         } else {
             $new_customer_error = true;
             $step = 1;
@@ -109,16 +145,7 @@
 <main>
 
     <!-- Title -->
-    <section class="open-account-title">
-        <h1>Openning Individual account</h1>
-        <div class="step">
-            <a href="<?php echo url_for('/accounts/open-individual-account.php?step=1'); ?>" class="link-step-1"><p>1 - Introduction</p> <span>1</span></a>
-            <a href="<?php echo url_for('/accounts/open-individual-account.php?step=2'); ?>" class="link-step-2"><p>2 - Personal details</p><span>2</span></a>
-            <a href="<?php echo url_for('/accounts/open-individual-account.php?step=4'); ?>" class="link-step-3"><p>3 - security details</p><span>3</span></a>
-            <a href="<?php echo url_for('/accounts/open-individual-account.php?step=5'); ?>" class="link-step-4"><p>4 - summary</p><span>4</span></a>
-
-        </div>
-    </section>
+   <?php  include_once('open-individual-account-title.php'); ?>
     
     <?php
         if ($step == 1) {
@@ -129,6 +156,10 @@
             include_once('open-individual-account-step-3.php');
         } elseif ($step == 4 && isset($_SESSION['address'])) {
             include_once('open-individual-account-step-4.php');
+        } elseif ($step == 5 && isset($_SESSION['client_auth'])) {
+            include_once('open-individual-account-step-5.php');
+        } elseif ($step == 6 && isset($_SESSION['account'])) {
+            include_once('open-individual-account-step-6.php');
         }
     ?>
 </main>

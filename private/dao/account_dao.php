@@ -307,3 +307,66 @@
         mysqli_free_result($result);
         return $account;
     }
+    function find_account_types()
+    {
+        global $db;
+
+        $sql = "SELECT * FROM account_types";
+
+        if ($stmt = $db->prepare($sql)) {
+            
+            // execute the prepared statement
+            if ($stmt->execute()) {
+
+                // get result
+                $result = $stmt->get_result();
+                $stmt->close();
+                return $result;
+            } else {
+                // SELECT execute failled
+                echo mysqli_error();
+                // Close statement
+                $stmt->close();
+                $db->close();
+                exit();
+            }
+        } else {
+            // select preparement failled
+            echo mysqli_error();
+            $db->close();
+            exit();
+        }
+    }
+    function find_account_type_by_id($account_type_id)
+    {
+        global $db;
+
+        $sql = "SELECT * FROM account_types " ;
+        $sql .= "WHERE account_type_id = ? ";
+        $sql .=  "LIMIT 1";
+
+        if ($stmt = $db->prepare($sql)) {
+            $stmt->bind_param('i', $account_type_id);
+            
+            // execute the prepared statement
+            if ($stmt->execute()) {
+
+                // get result
+                $result = $stmt->get_result();
+                $stmt->close();
+                return $result->fetch_assoc();
+            } else {
+                // SELECT execute failled
+                echo mysqli_error();
+                // Close statement
+                $stmt->close();
+                $db->close();
+                exit();
+            }
+        } else {
+            // select preparement failled
+            echo mysqli_error();
+            $db->close();
+            exit();
+        }
+    }
