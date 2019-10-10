@@ -382,7 +382,8 @@ nav .logo {
   left: 0;
 }
 .open-account-title .step .link-step-2::before,
-.open-account-title .step .link-step-3::before {
+.open-account-title .step .link-step-3::before,
+.open-account-title .step .link-step-4::before {
   content: "";
   width: 50%;
   height: 5px;
@@ -392,14 +393,15 @@ nav .logo {
   left: 0;
 }
 .open-account-title .step .link-step-2::after,
-.open-account-title .step .link-step-3::after {
+.open-account-title .step .link-step-3::after,
+.open-account-title .step .link-step-4::after {
   content: "";
   width: 49%;
   height: 5px;
   background-color: #000;
   position: absolute;
   bottom: 0;
-  left: 51%;
+  left: 50.5%;
 }
 
 /*--------------------Open-account-intro--------------------- */

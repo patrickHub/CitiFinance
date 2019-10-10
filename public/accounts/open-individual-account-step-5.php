@@ -1,6 +1,5 @@
 <?php
-
-    $account_types = find_account_types();
+    $account_types = Account_type_Repository::get_all();
 
     $account = $_SESSION['account'] ?? [];
 ?>

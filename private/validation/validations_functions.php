@@ -134,17 +134,17 @@
 
   function has_unique_nip($nip)
   {
-      $client_auth = find_client_auth_by_nip($nip);
+      $client_auth = Client_Auth_Repository::find_client_auth_by_nip($nip);
       return !isset($client_auth);
   }
   function has_unique_iban_number($iban_number)
   {
-      $iban = find_iban_by_iban_number($iban_number);
+      $iban = Iban_Repository::find_iban_by_iban_number($iban_number);
       return !isset($iban);
   }
   function has_unique_account_number($account_number)
   {
-      $account = find_account_by_account_number($account_number);
+      $account = Account_Repository::find_account_by_account_number($account_number);
       return !isset($account);
   }
   function has_valid_password_format($value)

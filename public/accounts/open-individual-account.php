@@ -5,7 +5,7 @@
     $step = $_GET['step'] ?? 1;
     $new_customer_error = false;
     $person = [];
-    $person['person_id'] = '';
+   // $person['person_id'] = '';
     $person['first_name'] = '';
     $person['last_name'] = '';
     $person['birthdate'] = '';
@@ -125,7 +125,8 @@
             $terms_conditions = $_POST['terms_conditions'] ?? '';
 
             if ($terms_conditions == 'Yes') {
-                // $_SESSION['account'] = $account;
+                $_SESSION['terms_conditions'] = 'Yes';
+                redirect_to(url_for('/accounts/open-individual-account-confirmation.php'));
             } else {
                 $general_term_error = 'Please you need to accept the generals terms and conditions';
                 $step = 6;

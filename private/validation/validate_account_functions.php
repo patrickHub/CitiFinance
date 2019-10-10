@@ -1,5 +1,4 @@
 <?php
-    require_once('validations_functions.php');
     function validate_person($person)
     {
         $errors = [];
@@ -140,7 +139,7 @@
         if (is_blank($account['account_type_id'])) {
             $errors['account_type_id'] = "Account type is mandatory!";
         } else {
-            $account_type = find_account_type_by_id($account_type_id);
+            $account_type = Account_Type_Repository::get_by_id($account_type_id);
             if (!isset($account_type)) {
                 $errors['account_type_id'] = "Account type does not exist.";
             }

@@ -19,23 +19,26 @@
     <link rel="stylesheet" href="<?php echo url_for('/css/styles.css'); ?>" />
     <?php
         echo "<style> ";
-            if (isset($step) &&  in_array($step, [1,2,3,4,5,6])) {
+            if (isset($step) &&  in_array($step, [1,2,3,4,5,6,7])) {
                 echo ".open-account-title .step .link-step-1::before { background-color: #eb1f1b;}";
             }
-            if (isset($step) &&  in_array($step, [2,3,4,5,6])) {
+            if (isset($step) &&  in_array($step, [2,3,4,5,6,7])) {
                 echo ".open-account-title .step .link-step-2::before { background-color: #eb1f1b;}";
             }
-            if (isset($step) &&  in_array($step, [3,4,5,6])) {
+            if (isset($step) &&  in_array($step, [3,4,5,6,7])) {
                 echo ".open-account-title .step .link-step-2::after { background-color: #eb1f1b;}";
             }
-            if (isset($step) &&  in_array($step, [4,5,6])) {
+            if (isset($step) &&  in_array($step, [4,5,6,7])) {
                 echo ".open-account-title .step .link-step-3::before { background-color: #eb1f1b;}";
             }
-            if (isset($step) &&  in_array($step, [5,6])) {
+            if (isset($step) &&  in_array($step, [5,6,7])) {
                 echo ".open-account-title .step .link-step-3::after { background-color: #eb1f1b;}";
             }
-            if (isset($step) &&  in_array($step, [6])) {
+            if (isset($step) &&  in_array($step, [6,7])) {
                 echo ".open-account-title .step .link-step-4::before { background-color: #eb1f1b;}";
+            }
+            if (isset($step) &&  in_array($step, [7])) {
+                echo ".open-account-title .step .link-step-4::after { background-color: #eb1f1b;}";
             }
            
         echo "</style>";

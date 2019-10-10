@@ -229,7 +229,7 @@
                             <span>Account type</span>
                         </div>
                         <div class="col-2">
-                            <?php $result = find_account_type_by_id($account['account_type_id']);?>
+                            <?php $result = Account_type_Repository::get_by_id(($account['account_type_id']));?>
                             <span><?php echo $result['type_name'] ; ?></span>
                         </div>
                     </div>

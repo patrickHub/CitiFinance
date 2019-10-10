@@ -10,7 +10,7 @@
     define("PUBLIC_PATH", PROJECT_PATH . "/public");
     define("SHARED_PATH", PRIVATE_PATH . "/shared");
     define("DB_PATH", PRIVATE_PATH . "/db");
-    define("DAO_PATH", PRIVATE_PATH . "/dao");
+    define("REPOSITORY_PATH", PRIVATE_PATH . "/repository");
     define("VALIDATION", PRIVATE_PATH . "/validation");
 
     // Assign the root URL to a PHP constant
@@ -26,8 +26,11 @@
 
     require_once('functions.php');
     require_once(DB_PATH . '/db.php');
-    require_once(DAO_PATH . '/account_dao.php');
+    require_once(REPOSITORY_PATH . '/abstract_repository.php');
+    require_once(REPOSITORY_PATH . '/repositories.php');
     require_once(SHARED_PATH . '/countries_list.php');
+    require_once(VALIDATION . '/validations_functions.php');
     require_once(VALIDATION . '/validate_account_functions.php');
 
     $db = db_connect();
+    Repository::set_db($db);
