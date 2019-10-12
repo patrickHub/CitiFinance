@@ -408,18 +408,21 @@ nav .logo {
 
 @media (min-width: 967px) {
   .open-account,
-  .open-account-summarize {
+  .open-account-summarize,
+  .open-account-confirmation {
     width: 70%;
   }
 }
 @media (max-width: 966px) {
   .open-account,
-  .open-account-summarize {
+  .open-account-summarize,
+  .open-account-confirmation {
     width: 90%;
   }
 }
 .open-account,
-.open-account-summarize {
+.open-account-summarize,
+.open-account-confirmation {
   max-width: 667px;
   margin: 0 auto;
   margin-top: 50px;
@@ -431,6 +434,10 @@ nav .logo {
   border-bottom: 1px solid #e3e0e0;
 }
 .open-account-summarize header {
+  padding: 30px;
+}
+.open-account-confirmation header,
+.open-account-confirmation footer {
   padding: 30px;
 }
 .open-account header .row-1 {
@@ -731,4 +738,15 @@ nav .logo {
   width: 19px;
   height: 19px;
   margin-right: 10px;
+}
+
+/*--------------------Open-account-confirmation--------------------- */
+.open-account-confirmation .main-content {
+  padding: 0 30px 30px 30px;
+}
+.open-account-confirmation .main-content ul li {
+  margin-bottom: 10px;
+}
+.open-account-confirmation .main-content .download {
+  margin-bottom: 10px;
 }

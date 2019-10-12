@@ -5,7 +5,7 @@
     $step = $_GET['step'] ?? 1;
     $new_customer_error = false;
     $person = [];
-   // $person['person_id'] = '';
+    $person['person_id'] = '';
     $person['first_name'] = '';
     $person['last_name'] = '';
     $person['birthdate'] = '';
@@ -15,6 +15,7 @@
     $person['email'] = '';
 
     $address = [];
+    $address['person_id'] = '';
     $address['street'] = '';
     $address['npa'] = '';
     $address['city'] = '';
@@ -28,11 +29,12 @@
     $client_auth['person_id'] = '';
 
     $account  = [];
-    $account['overdraft'] = '';
+    $account['iban_id'] = '';
     $account['account_type_id'] = '';
     $account['iban_number'] = '';
     $account['account_number'] = '';
     $account['interest_rate'] = '';
+    $account['overdraft'] = '';
     $account['balance'] = '';
     $account['owner_type'] = '';
 
