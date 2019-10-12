@@ -1,7 +1,5 @@
 <?php
 
-    require_once('abstract_repository.php');
-
     class Account_type_Repository extends Repository
     {
         public const TABLE_NAME = "account_types";
@@ -154,7 +152,7 @@
                 exit();
             }
         }
-        public function find_iban_by_iban_number($iban_number)
+        public static function find_iban_by_iban_number($iban_number)
         {
             $sql = "SELECT * FROM ibans ";
             $sql .= "WHERE iban_number = ? ";
@@ -236,7 +234,7 @@
                 exit();
             }
         }
-        public function find_account_by_account_number($account_number)
+        public static function find_account_by_account_number($account_number)
         {
             $sql = "SELECT * FROM accounts ";
             $sql .= "WHERE account_number = ?";

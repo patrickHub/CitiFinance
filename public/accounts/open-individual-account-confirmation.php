@@ -52,6 +52,8 @@
        unset($_SESSION['client_auth']);
        unset($_SESSION['account']);
        unset($_SESSION['terms_conditions']);
+
+       generate_pdf_individual_account_summary($person, $address, $client_auth, $account);
    } else {
        redirect_to('/accounts/open-individual-account.php?step=1');
    }
