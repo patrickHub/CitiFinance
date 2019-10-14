@@ -137,6 +137,11 @@
             $new_customer_error = true;
             $step = 1;
         }
+    } else {
+        // it is a get request
+        if ($step > 1 && !isset($_SESSION['step'])) {
+            redirect_to(url_for('/accounts/open-individual-account.php?step=1'));
+        }
     }
 
     

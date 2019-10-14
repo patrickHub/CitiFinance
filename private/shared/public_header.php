@@ -49,11 +49,11 @@
     <header class="public-header">
         <div class="top-login">
             <a href="<?php echo url_for('/accounts/open-individual-account.php?step=1'); ?>">Open an Account</a>
-            <a href="#"><img src="<?php echo url_for('/images/landingpage_assets/icons8-lock-50.png'); ?>" > <strong>Login</strong></a>
+            <a href="<?php echo url_for('/accounts/log/login.php'); ?>"><img src="<?php echo url_for('/images/landingpage_assets/icons8-lock-50.png'); ?>" > <strong>Login</strong></a>
 
         </div>
         <nav>
-            <a class="logo" title="start page" href="#">CitiFinance</a>
+            <a class="logo" title="start page" href="<?php echo url_for('index.php'); ?>">CitiFinance</a>
             <a class="menu-link" href="#">Your Needs</a>
             <a class="menu-link" href="#">Our Products</a>
             <a class="menu-link-search" title="search" href="#"><img src="<?php echo url_for('/images/landingpage_assets/icons8-search-50.png'); ?>" ></a>

@@ -59,6 +59,114 @@ main {
   display: inline-block;
 }
 
+.input {
+  width: 100%;
+  padding: 7px 7px 5px 7px;
+  font-family: "Gothic A1", "Noto Sans SC", "Assistant", sans-serif;
+  font-size: 17px;
+  letter-spacing: 1px;
+  border: 0;
+  color: #444;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #888;
+  outline: none;
+}
+.input-select {
+  width: 100%;
+  padding: 7px;
+  font-family: "Gothic A1", "Noto Sans SC", "Assistant", sans-serif;
+  font-size: 17px;
+  letter-spacing: 1px;
+  color: #444;
+  background-color: #f2f2f2;
+  border: 1px solid #888;
+  outline: none;
+  -webkit-appearance: button;
+}
+.input ~ .input-focus-border {
+  padding: 8px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-left: 1px solid #888;
+  border-right: 1px solid #888;
+}
+.input ~ .input-focus-border:before,
+.input ~ .input-focus-border:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #eb1f1b;
+  transition: 0.4s;
+}
+.input ~ .input-focus-border:after {
+  left: auto;
+  right: 0;
+}
+.input:focus ~ .input-focus-border:before,
+.input:focus ~ .input-focus-border:after {
+  width: 50%;
+  transition: 0.4s;
+}
+.input:focus ~ .input-focus-border {
+  border-left: 2px solid #eb1f1b;
+  border-right: 0;
+}
+
+.item-link {
+  display: inline-block;
+  padding-right: 1.25em;
+  padding-left: 0;
+  color: #34495e;
+}
+.item-link:hover {
+  text-decoration: solid underline;
+}
+
+.item-link::after {
+  width: 10px;
+  height: 10px;
+  content: "";
+  position: absolute;
+  top: 50%;
+  border-style: solid;
+  border-width: 1px 1px 0 0;
+  -webkit-transform: translateX(-0.459em) translateY(-0.3em) scaleX(0.75)
+    rotate(45deg);
+  -ms-transform: translateX(-0.459em) translateY(-0.3em) scaleX(0.75)
+    rotate(45deg);
+  transform: translateX(-0.459em) translateY(-0.3em) scaleX(0.75) rotate(45deg);
+  right: 0;
+}
+
+.bloc-error-msg {
+  position: relative;
+  width: 100%;
+  padding: 5px 10px 5px 70px;
+  border: 1px solid #e1b5b7;
+  color: #eb1f1b;
+  background-color: #f7f7f7;
+  font-size: 15px;
+  font-weight: bold;
+}
+.bloc-error-msg::before {
+  margin-left: 25px;
+  left: 0;
+  right: auto;
+  content: "";
+  position: absolute;
+  top: 30%;
+  background: url(../images/landingpage_assets/icons8-high-importance-30.png)
+    no-repeat;
+  width: 40px;
+  height: 40px;
+}
+
 /*--------------- -----Headers--------------------- */
 .public-header {
   position: relative;
@@ -409,47 +517,58 @@ nav .logo {
 @media (min-width: 967px) {
   .open-account,
   .open-account-summarize,
-  .open-account-confirmation {
+  .open-account-confirmation,
+  .login {
     width: 70%;
   }
 }
 @media (max-width: 966px) {
   .open-account,
   .open-account-summarize,
-  .open-account-confirmation {
+  .open-account-confirmation,
+  .login {
     width: 90%;
   }
 }
 .open-account,
 .open-account-summarize,
-.open-account-confirmation {
+.open-account-confirmation,
+.login {
   max-width: 667px;
   margin: 0 auto;
   margin-top: 50px;
   background-color: #f2f2f2;
   font-size: 17px;
 }
-.open-account header {
-  padding: 30px 30px;
+.open-account header,
+.login header {
+  /*padding: 30px 30px;*/
   border-bottom: 1px solid #e3e0e0;
 }
-.open-account-summarize header {
+/*.open-account-summarize header {
   padding: 30px;
-}
+}*/
+.open-account header,
+.open-account footer,
+.open-account-summarize header,
+.open-account-summarize footer,
 .open-account-confirmation header,
-.open-account-confirmation footer {
+.open-account-confirmation footer,
+.login header,
+.login footer {
   padding: 30px;
 }
 .open-account header .row-1 {
   display: flex;
 }
-.open-account footer {
-  padding: 30px 30px;
+.open-account footer,
+.login footer {
+  /* padding: 30px 30px;*/
   border-top: 1px solid #e3e0e0;
   text-align: end;
 }
 .open-account-summarize footer {
-  padding: 30px 30px;
+  /* padding: 30px 30px;*/
   text-align: end;
 }
 .open-account header .col-1 {
@@ -471,25 +590,37 @@ nav .logo {
 .open-account header .col-2 span {
   padding-left: 13px;
 }
+
+.open-account .main-content,
+.login .main-content {
+  padding: 0 30px 30px 30px;
+}
+.open-account .main-content .row,
+.login .main-content .row {
+  margin-top: 30px;
+}
+
 @media (max-width: 750px) {
-  .open-account .main-content {
+  /* .open-account .main-content {
     padding: 0 30px 30px 30px;
-  }
-  .open-account .main-content .row {
+  }*/
+  .open-account .main-content .row,
+  .login .main-content .row {
     display: block;
-    margin-top: 30px;
+    /* margin-top: 30px;*/
   }
-  .open-account .main-content .col-1 {
+  .open-account .main-content .col-1,
+  .login .main-content .col-1 {
     margin-bottom: 10px;
   }
 }
 @media (min-width: 750px) {
-  .open-account .main-content {
-    padding: 0 30px 30px 30px;
-  }
+  /* .open-account .main-content {
+   padding: 0 30px 30px 30px;
+  }*/
   .open-account .main-content .row {
     display: flex;
-    margin-top: 30px;
+    /* margin-top: 30px;*/
   }
   .open-account .main-content .col-1 {
     display: flex;
@@ -499,7 +630,8 @@ nav .logo {
   }
 }
 .open-account .main-content .row-error,
-.open-account-summarize .main-content .row-error {
+.open-account .main-content .row-error,
+.login .main-content .row-error {
   display: flex;
   color: #eb1f1b;
   font-size: 14px;
@@ -538,7 +670,7 @@ nav .logo {
 .open-account .form-date {
   max-width: 175px;
 }
-.open-account .input {
+/*.open-account .input {
   width: 100%;
   padding: 7px;
   font-size: 17px;
@@ -570,7 +702,7 @@ nav .logo {
   border: 1px solid #888;
   outline: none;
   -webkit-appearance: button;
-}
+}*/
 .open-account .form-select:before {
   content: "\f13a";
   font-family: "fontAwesome";
@@ -607,7 +739,7 @@ nav .logo {
   background-position: 11px 4px;
   border-bottom: 1px solid #888;
 }
-.open-account .input ~ .input-focus-border,
+/*.open-account .input ~ .input-focus-border,
 .open-account .input-npa ~ .input-npa-focus-border {
   padding: 8px;
   position: absolute;
@@ -647,7 +779,7 @@ nav .logo {
 .open-account .input-npa:focus ~ .input-npa-focus-border {
   border-left: 2px solid #eb1f1b;
   border-right: 0;
-}
+}*/
 
 /*--------------------Open-account-summarize--------------------- */
 .open-account-summarize .main-content {
@@ -749,4 +881,43 @@ nav .logo {
 }
 .open-account-confirmation .main-content .download {
   margin-bottom: 10px;
+}
+/*--------------------Login--------------------- */
+.login {
+  margin-top: 232px;
+}
+.login header img {
+  width: 36px;
+}
+
+.login header .row {
+  display: flex;
+  align-items: flex-end;
+}
+.login header .row .col-2 {
+  margin-left: 15px;
+  font-size: 30px;
+}
+.login .main-content .row .col-2 {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+@media (min-width: 750px) {
+  .login .main-content .row {
+    display: flex;
+  }
+  .login .main-content .col-1 {
+    display: flex;
+    max-width: 40%;
+    min-width: 220px;
+    margin-right: 20px;
+    align-items: center;
+  }
+}
+
+.login .row .forget-pw {
+  position: relative;
+  width: 238px;
 }

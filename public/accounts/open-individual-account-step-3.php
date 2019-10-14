@@ -55,8 +55,8 @@
                             <div>
                                 <div class="form-input grid-npa-city ">
                                     <div>
-                                        <input class="input-npa" type="text" name="npa" value="<?php echo isset($address['npa']) ? h($address['npa']): ''; ?>">
-                                        <span class="input-npa-focus-border" style="width:30%;"></span>
+                                        <input class="input" type="text" name="npa" value="<?php echo isset($address['npa']) ? h($address['npa']): ''; ?>">
+                                        <span class="input-focus-border" style="width:30%;"></span>
                                     </div>
                                     <div>
                                         <input class="input" type="text" name="city" value="<?php echo isset($address['city']) ? h($address['city']): ''; ?>">

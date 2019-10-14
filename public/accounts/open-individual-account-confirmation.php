@@ -55,7 +55,7 @@
 
        generate_pdf_individual_account_summary($person, $address, $client_auth, $account);
    } else {
-       redirect_to('/accounts/open-individual-account.php?step=1');
+       redirect_to(url_for('/accounts/open-individual-account.php?step=1'));
    }
 
 

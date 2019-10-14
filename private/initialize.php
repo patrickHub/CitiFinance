@@ -28,6 +28,7 @@
     define("WWW_ROOT", $doc_root);
 
     require_once('functions.php');
+    require_once('auth_functions.php');
     require_once(DB_PATH . '/db.php');
     require_once(REPOSITORY_PATH . '/abstract_repository.php');
     require_once(REPOSITORY_PATH . '/repositories.php');
