@@ -167,11 +167,11 @@ main {
   height: 40px;
 }
 
-/*--------------- -----Headers--------------------- */
+/*---------------------Public Headers--------------------- */
 .public-header {
   position: relative;
 }
-.top-login {
+.public-header .top-login {
   position: fixed;
   z-index: 1;
   top: 0;
@@ -181,7 +181,7 @@ main {
   background: #e3e0e0;
   text-align: right;
 }
-.top-login a {
+.public-header .top-login a {
   display: inline-block;
   width: 150px;
   height: 100%;
@@ -192,15 +192,15 @@ main {
   padding: 1% 0;
 }
 
-.top-login a:hover {
+.public-header .top-login a:hover {
   border-bottom: 1px solid #eb1f1b;
 }
 
-.top-login img {
+.public-header .top-login img {
   max-height: 13px;
 }
 
-nav {
+.public-header nav {
   position: fixed;
   z-index: 1;
   top: 50px;
@@ -212,7 +212,7 @@ nav {
   overflow: hidden;
 }
 
-nav .menu-link {
+.public-header nav .menu-link {
   display: inline-block;
   width: 200px;
   height: 100%;
@@ -222,19 +222,19 @@ nav .menu-link {
   margin-right: -4px;
   line-height: 75px;
 }
-nav .menu-link:hover {
+.public-header nav .menu-link:hover {
   border-bottom: 5px solid #eb1f1b;
 }
-nav img {
+.public-header nav img {
   height: 21px;
 }
-nav .menu-link-search {
+.public-header nav .menu-link-search {
   float: right;
   padding: 25px;
   border-left: 1px solid #e3e0e0;
 }
 
-nav .logo {
+.public-header nav .logo {
   display: inline-block;
   width: 300px;
   height: 100%;
@@ -384,7 +384,7 @@ nav .logo {
   background-repeat: no-repeat;
 }
 
-/*--------------------footer--------------------- */
+/*--------------------public footer--------------------- */
 .footer {
   margin-top: 55px;
   padding-top: 30px;
@@ -920,4 +920,126 @@ nav .logo {
 .login .row .forget-pw {
   position: relative;
   width: 238px;
+}
+
+/*--------------------Home header--------------------- */
+.home-header {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: 52px;
+  padding: 0 30px;
+  background: #283e4a;
+  border-top: none;
+  box-shadow: none;
+}
+.home-header nav {
+  width: 100%;
+}
+.home-header nav .list-menu {
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+  justify-content: flex-end;
+  list-style-type: none;
+}
+.home-header nav .menu-left {
+  width: 70%;
+}
+.home-header nav .menu-right {
+  float: right;
+  width: 30%;
+}
+.home-header nav .list-menu .menu-item {
+  display: inline-block;
+  width: 30%;
+}
+.home-header nav .list-menu .logo-item {
+  width: 40%;
+}
+.home-header nav .list-menu .full-name {
+  width: 70%;
+}
+.home-header nav .list-menu .logout {
+  width: 30%;
+}
+
+.home-header nav .list-menu .menu-item .menu-link {
+  display: inline-flex;
+  width: 100%;
+  height: 52px;
+  color: #c7d1d8;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #5c6f7c;
+}
+.home-header nav .list-menu .menu-item .logo-link {
+  font-family: "Saira", sans-serif;
+  font-style: italic;
+  font-size: 20px;
+  text-decoration-line: underline;
+  text-decoration-color: black;
+  color: #fff;
+  background: #eb1f1b;
+  border: 1px solid #5c6f7c;
+  border-top-color: #eb1f1b;
+  border-bottom-color: #eb1f1b;
+  text-align: center;
+}
+.home-header nav .list-menu .menu-item .menu-link:hover {
+  color: #fff;
+  font-weight: bold;
+  opacity: 1;
+  background: #2e4053;
+}
+.home-header nav .list-menu .menu-item .menu-link:focus {
+  color: #fff;
+  font-weight: bold;
+  background: #2e4053;
+  opacity: 1;
+}
+.home-header nav .list-menu .menu-item .logo-link:hover {
+  color: #fff;
+  font-weight: bold;
+  background: #eb1f1b;
+}
+.home-header nav .list-menu .menu-item .menu-link img {
+  width: 32px;
+  opacity: 0.7;
+}
+.home-header nav .list-menu .menu-item .menu-link img:hover {
+  opacity: 1;
+}
+
+/*--------------------Home footer--------------------- */
+.home-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 54px;
+  background: #eaeded;
+}
+.home-footer .list-menu {
+  display: inline-flex;
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.home-footer .list-menu .menu-item {
+  display: inline-flex;
+  width: 40%;
+}
+.home-footer .list-menu .menu-item .menu-link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 54px;
+  border: 1px solid #f8f9f9;
+  text-align: center;
+}
+.home-footer .list-menu .menu-item .menu-link:hover {
+  background: #ccd1d1;
 }
