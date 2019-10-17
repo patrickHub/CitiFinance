@@ -30,7 +30,6 @@
 
     $account  = [];
     $account['iban_id'] = '';
-    $account['account_type_id'] = '';
     $account['iban_number'] = '';
     $account['account_number'] = '';
     $account['interest_rate'] = '';
@@ -110,7 +109,6 @@
             
             // process informations on the individual account
             $account['overdraft'] = $_POST['overdraft'];
-            $account['account_type_id'] = $_POST['account_type_id'];
 
             $errors = validate_account($account);
             $_SESSION['account'] = $account;

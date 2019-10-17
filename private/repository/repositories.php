@@ -3,6 +3,30 @@
     class Account_type_Repository extends Repository
     {
         public const TABLE_NAME = "account_types";
+
+
+        public static function find_account_type_by_name($type_name)
+        {
+            $sql = "SELECT * FROM account_types ";
+            $sql .= "WHERE type_name = ?";
+    
+            try {
+                $stmt = self::$db->stmt_init();
+                $stmt->prepare($sql);
+                $stmt->bind_param('s', $type_name);
+                
+                // execute the prepared statement
+                $stmt->execute();
+    
+                // get result
+                $result = $stmt->get_result();
+                $stmt->close();
+                return $result->fetch_assoc();
+            } catch (mysqli_sql_exception $e) {
+                echo $e->__toString();
+                exit();
+            }
+        }
     }
 
     class Person_Repository extends Repository

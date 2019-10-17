@@ -9,15 +9,23 @@
        $person = $_SESSION['person'];
        $address = $_SESSION['address'];
        $client_auth = $_SESSION['client_auth'];
-       $account = $_SESSION['account'];
+       $checking_account = $_SESSION['account'];
+       $saving_account = $_SESSION['account'];
        $iban = [];
        $individual = [];
 
        // generate data
        $client_auth['nip'] = generate_nip();
        $iban['iban_number'] = generate_iban_number();
-       $account['account_number'] = generate_account_number();
-       $account['interest_rate'] = generate_interest_rate($account['overdraft']);
+       $checking_account['account_number'] = generate_account_number();
+       $saving_account['account_number'] = generate_account_number();
+       $saving_account['interest_rate'] = generate_interest_rate($checking_account['overdraft']);
+
+       $checking_account['interest_rate'] = 0.00;
+       $saving_account['overdraft'] = 0.00;
+
+       $checking_account['balance'] = 0.00;
+       $saving_account['balance'] = 0.00;
 
        // save objects to db
        Person_Repository::insert($person);
@@ -31,14 +39,19 @@
        Client_Auth_Repository::insert($client_auth);
 
        Iban_Repository::insert($iban['iban_number']);
-       ;
        $iban['iban_id'] = $db->insert_id;
 
-       $account['iban_id'] = $iban['iban_id'];
-       $account['iban_number'] = $iban['iban_number'];
-       $account['owner_type'] = 'Individual';
-       $account['balance'] = 0.00;
-       Account_Repository::insert($account);
+       $checking_account['iban_id'] = $iban['iban_id'];
+       $saving_account['iban_id'] = $iban['iban_id'];
+       $checking_account['iban_number'] = $iban['iban_number'];
+       $checking_account['owner_type'] = 'Individual';
+       $saving_account['owner_type'] = 'Individual';
+
+       $checking_account['account_type_id'] = Account_type_Repository::find_account_type_by_name('Checking account');
+       $saving_account['account_type_id'] = Account_type_Repository::find_account_type_by_name('Saving account');
+
+       Account_Repository::insert($checking_account);
+       Account_Repository::insert($saving_account);
 
        $individual['person_id'] = $person['person_id'];
        $individual['iban_id'] = $iban['iban_id'];
@@ -53,7 +66,11 @@
        unset($_SESSION['account']);
        unset($_SESSION['terms_conditions']);
 
-       generate_pdf_individual_account_summary($person, $address, $client_auth, $account);
+       $checking_account['checking_account_number'] = $checking_account['account_number'];
+       $checking_account['saving_account_number'] = $saving_account['account_number'];
+       unset($checking_account['account_number']);
+
+       generate_pdf_individual_account_summary($person, $address, $client_auth, $checking_account);
    } else {
        redirect_to(url_for('/accounts/open-individual-account.php?step=1'));
    }
@@ -85,8 +102,9 @@
             <ul>
                 <li><span>Your Personal Identification Number (NIP) : <strong><?php echo $client_auth['nip']; ?></strong></span></li>
                 <li><span>Your Iban Number : <strong><?php echo $iban['iban_number']; ?></strong></span></li>
-                <li><span>Your Account Number : <strong><?php echo $account['account_number']; ?></strong></span></li>
-                <li><span>Your Interest rate : <strong><?php echo $account['interest_rate']; ?></strong></span></li>
+                <li><span>Your Checking Account Number : <strong><?php echo $checking_account['checking_account_number']; ?></strong></span></li>
+                <li><span>Your saving Account Number : <strong><?php echo $checking_account['saving_account_number']; ?></strong></span></li>
+                <li><span>Your Interest rate : <strong><?php echo $saving_account['interest_rate']; ?></strong></span></li>
                 
             </ul>
         </div>
@@ -98,7 +116,7 @@
     <footer>
         <div class="row">
             <p>You can download the document containing those informations 
-                <a href="<?php echo url_for('/accounts/accounts_pdf_summary/account_' . $account['account_number'] . '.pdf') ?>" download target="_blank">here</a> </p>
+                <a href="<?php echo url_for('/accounts/accounts_pdf_summary/account_' . $checking_account['checking_account_number'] . '.pdf') ?>" download target="_blank">here</a> </p>
             <p>Your CitiFinance</p>
         </div>
     </footer>

@@ -1,5 +1,4 @@
 <?php
-    $account_types = Account_type_Repository::get_all();
 
     $account = $_SESSION['account'] ?? [];
 ?>
@@ -45,37 +44,6 @@
                         <span class="input_error"><?php echo isset($errors['overdraft']) ? h($errors['overdraft']) : ''; ?></span>
                     </div>
                 </div>
-
-                <!-- account type -->
-                <div class="row">
-                    <div class="col-1">
-                        <span>Account type*</span>
-                    </div>
-                    <div class="col-2">
-                        <div class="col-2-row">
-                            <div>
-                                <div class="form-input form-select">
-                                    <select class="input-select" name="account_type_id">
-                                        <option value="">Please select</option>
-                                        <?php while ($account_type = $account_types->fetch_assoc()) {?>
-                                        <option value="<?php echo $account_type['account_type_id'];?>"  <?php echo isset($account['account_type_id']) && $account['account_type_id'] == $account_type['account_type_id'] ? 'selected' : '';?> ><?php echo h($account_type['type_name']);?></option>
-                                        <?php }?>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row-error">
-                    <div class="col-1">
-                    </div>
-                    <div class="col-2">
-                        <span class="input_error"><?php echo isset($errors['account_type_id']) ? h($errors['account_type_id']) : ''; ?></span>
-                    </div>
-                </div>
-
-                
-                
             </div>
             <footer>
                 <a href="<?php echo url_for('/accounts/open-individual-account.php?step=4'); ?>" class="btn-back">Previous</a>

@@ -115,8 +115,8 @@
   }
   function has_valid_phone_format($value)
   {
-      $date_regex = '/^0[2-9]{9}/';
-      if (preg_match($date_regex, $value)) {
+      $phone_regex = '/^0[2-9]{1}[0-9]{8}/';
+      if (preg_match($phone_regex, $value)) {
           return true;
       }
       return false;

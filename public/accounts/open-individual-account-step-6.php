@@ -223,17 +223,6 @@
                             <span><?php echo $account['overdraft'] . '    ' . 'CHF '; ?></span>
                         </div>
                     </div>
-                    <!-- Account type-->
-                    <div class="row">
-                        <div class="col-1">
-                            <span>Account type</span>
-                        </div>
-                        <div class="col-2">
-                            <?php $result = Account_type_Repository::get_by_id(($account['account_type_id']));?>
-                            <span><?php echo $result['type_name'] ; ?></span>
-                        </div>
-                    </div>
-            
                 </div>
             </article>
 
