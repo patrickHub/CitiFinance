@@ -118,14 +118,13 @@ CREATE TABLE bank_cards(
 
 CREATE TABLE transfert_debit_accounts(
 	transfert_debit_id INT(11) PRIMARY KEY AUTO_INCREMENT,
-	account_id INT(11) NOT NULL,
-	  
-    CONSTRAINT transfert_debit_accounts_accounts_fk FOREIGN KEY (account_id) REFERENCES accounts(account_id)
+	account_number VARCHAR(255) NOT NULL, /* always check that this account_number is either from account table or external_account table */
+    account_type VARCHAR(15) /* externe or interne */
 );
 
 CREATE TABLE transfert_credit_accounts(
 	transfert_credit_id INT(11) PRIMARY KEY AUTO_INCREMENT,
-	account_id INT(11) NOT NULL, /* always check that this account_id either from account table or external_account table */
+	account_number VARCHAR(255) NOT NULL, /* always check that this account_number is either from account table or external_account table */
 	account_type VARCHAR(15) /* externe or interne */
     
 );
@@ -143,15 +142,14 @@ CREATE TABLE transfert_debit_credits(
 
 CREATE TABLE payment_debit_accounts(
 	payment_debit_id INT(11) PRIMARY KEY AUTO_INCREMENT,
-	account_id INT(11) NOT NULL,
-	  
-    CONSTRAINT payment_debit_accounts_accounts_fk FOREIGN KEY (account_id) REFERENCES accounts(account_id)
+	account_number VARCHAR(255) NOT NULL, /* always check that this account_number is either from account table or external_account table */
+    account_type VARCHAR(15) /* externe or interne */
 );
 
 CREATE TABLE payment_credit_accounts(
 	payment_credit_id INT(11) PRIMARY KEY AUTO_INCREMENT,
-	account_id INT(11) NOT NULL, /* always check that this account_id either from account table or external_account table */
-	account_type VARCHAR(15) /* externe or interne */
+	account_number VARCHAR(255) NOT NULL, /* always check that this account_number is either from account table or external_account table */
+    account_type VARCHAR(15) /* externe or interne */
     
 );
 
@@ -186,4 +184,27 @@ CREATE TABLE external_accounts(
     
     CONSTRAINT external_accounts_banks_fk FOREIGN KEY (bank_id) REFERENCES banks(bank_id)
 );
+CREATE TABLE transactions(
+    transaction_id INT(11) PRIMARY KEY AUTO_INCREMENT,
+    account_id INT(11) , /* NULL when bank_card_id is not null */
+    bank_card_id INT(11), /* NULL when account_id is not null */
+    amount DECIMAL(15, 2),
+    issued_date DATE NOT NULL,
+    description VARCHAR(255),
+    transaction_type VARCHAR(15), /* PAYMENT, TRANSFER or ADD MONEY  */    
+    
+	CONSTRAINT transactions_accounts_fk FOREIGN KEY (account_id) REFERENCES accounts(account_id),
+    CONSTRAINT transactions_bank_cards_fk FOREIGN KEY (bank_card_id) REFERENCES bank_cards(bank_card_id)
+);
+
+CREATE TABLE supply_accounts(
+    supply_account_id INT(11) PRIMARY KEY AUTO_INCREMENT,
+    account_id INT(11) NOT NULL,
+    person_id INT(11) NOT NULL, /* determine who has add money in case of entreprise account */
+    amount DECIMAL(15, 2),
+    issued_date DATE NOT NULL, 
+    
+	CONSTRAINT supply_account_accounts_fk FOREIGN KEY (account_id) REFERENCES accounts(account_id)
+);
+
 
