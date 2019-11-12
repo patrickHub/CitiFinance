@@ -152,5 +152,5 @@
         $pdf->add_section('/images/landingpage_assets/icons8-location-30.png', 'My address', $address_detail);
         $pdf->add_section('/images/landingpage_assets/icons8-forgot-password-64.png', 'My login informations', $client_auth_detail);
         $pdf->add_section('/images/landingpage_assets/icons8-bank-card-missing-30.png', 'My account', $account_detail);
-        $pdf->Output('./accounts_pdf_summary/account_' . $account['account_number'] . '.pdf', 'F');
+        $pdf->Output('./accounts_pdf_summary/account_' . $account['checking_account_number'] . '.pdf', 'F');
     }

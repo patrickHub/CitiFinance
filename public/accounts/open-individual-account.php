@@ -50,7 +50,7 @@
                 $_SESSION['step'] = 2;
                 $step = 2;
             } else {
-                // redirect_to('login.php');
+                redirect_to(url_for('/accounts/log/login.php'));
             }
         } elseif (isset($_SESSION['step']) && $_SESSION['step'] == 2 || isset($_POST['first_name'])) {
 

@@ -5,7 +5,7 @@
   {
       // Renerating the ID protects the user from session fixation.
       session_regenerate_id();
-      $_SESSION['person_id'] = $$client_auth['person_id'];
+      $_SESSION['person_id'] = $client_auth['person_id'];
       $_SESSION['last_login'] = time();
       return true;
   }

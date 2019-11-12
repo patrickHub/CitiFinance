@@ -47,8 +47,11 @@
        $checking_account['owner_type'] = 'Individual';
        $saving_account['owner_type'] = 'Individual';
 
-       $checking_account['account_type_id'] = Account_type_Repository::find_account_type_by_name('Checking account');
-       $saving_account['account_type_id'] = Account_type_Repository::find_account_type_by_name('Saving account');
+       $checking_account_type = Account_type_Repository::find_account_type_by_name('Checking account');
+       $checking_account['account_type_id'] = $checking_account_type['account_type_id'];
+
+       $saving_account_type = Account_type_Repository::find_account_type_by_name('Saving account');
+       $saving_account['account_type_id'] = $saving_account_type['account_type_id'];
 
        Account_Repository::insert($checking_account);
        Account_Repository::insert($saving_account);

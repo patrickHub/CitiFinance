@@ -226,6 +226,29 @@
                 exit();
             }
         }
+
+        public static function find_individual_by_person_id($person_id)
+        {
+            $sql = "SELECT * FROM individuals ";
+            $sql .= "WHERE person_id = ? ";
+
+            try {
+                $stmt = self::$db->stmt_init();
+                $stmt->prepare($sql);
+                $stmt->bind_param('d', $person_id);
+                
+                // execute the prepared statement
+                $stmt->execute();
+    
+                // get result
+                $result = $stmt->get_result();
+                $stmt->close();
+                return $result->fetch_assoc();
+            } catch (mysqli_sql_exception $e) {
+                echo $e->__toString();
+                exit();
+            }
+        }
     }
     class Account_Repository extends Repository
     {
@@ -275,6 +298,55 @@
                 $result = $stmt->get_result();
                 $stmt->close();
                 return $result->fetch_assoc();
+            } catch (mysqli_sql_exception $e) {
+                echo $e->__toString();
+                exit();
+            }
+        }
+        public static function find_accounts_by_iban_id($iban_id)
+        {
+            $sql = "SELECT * FROM accounts ";
+            $sql .= "WHERE iban_id = ? ";
+
+            try {
+                $stmt = self::$db->stmt_init();
+                $stmt->prepare($sql);
+                $stmt->bind_param('i', $iban_id);
+                
+                // execute the prepared statement
+                $stmt->execute();
+    
+                // get result
+                $result = $stmt->get_result();
+                $stmt->close();
+                return $result;
+            } catch (mysqli_sql_exception $e) {
+                echo $e->__toString();
+                exit();
+            }
+        }
+        public static function add_money_to_account($id, $amount)
+        {
+            // get the current balance from db
+            $account = static::get_by_id($id);
+            // set the amount to save
+            $totalAmount = $amount + $account['balance'];
+
+            // prepare an insert statement
+            $sql = "UPDATE " . static::TABLE_NAME . " ";
+            $sql .= "SET balance = ? ";
+            $sql .= "WHERE account_id = ?";
+            try {
+                $stmt = self::$db->stmt_init();
+                $stmt->prepare($sql);
+
+                // bind varaibles to prepared statement as parameters
+                $stmt->bind_param("di", $totalAmount, $id);
+                // execute the prepared statement
+                $stmt->execute();
+                // Close statement
+                $stmt->close();
+                return true;
             } catch (mysqli_sql_exception $e) {
                 echo $e->__toString();
                 exit();

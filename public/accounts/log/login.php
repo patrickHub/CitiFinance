@@ -22,13 +22,13 @@
         }
         // if there is not errors try to login
         if (empty($errors['nip']) && empty($errors['password'])) {
-            $result= Client_Auth_Repository::find_client_auth_by_nip($client_auth['nip']);
+            $result = Client_Auth_Repository::find_client_auth_by_nip($client_auth['nip']);
             if ($result) {
                 if (password_verify($client_auth['password'], $result['hashed_password'])) {
 
                     // password matched
                     log_in($result);
-                    redirect_to('/accounts/homes/index.php');
+                    redirect_to(url_for('/accounts/home/index.php'));
                 } else {
 
                     // nip was found but password don't matched
@@ -39,7 +39,6 @@
                 $login_failure_message = 'Your login data are not correct <br> Please enter the security data again.';
             }
         } else {
-            $login_failure_message = 'It a login failure empty';
         }
     }
 
