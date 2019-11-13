@@ -50,7 +50,7 @@ CREATE TABLE account_types(
 
 INSERT INTO account_types(type_name) VALUES('Checking account');
 INSERT INTO account_types(type_name) VALUES('Saving account');
-INSERT INTO account_types(type_name) VALUES('Certificate of deposit account');
+INSERT INTO account_types(type_name) VALUES('Certificate of deposit');
 INSERT INTO account_types(type_name) VALUES('Retirement account');
 
 CREATE TABLE accounts(
@@ -184,6 +184,8 @@ CREATE TABLE external_accounts(
     
     CONSTRAINT external_accounts_banks_fk FOREIGN KEY (bank_id) REFERENCES banks(bank_id)
 );
+Use citifinancedb;
+drop table transactions;
 CREATE TABLE transactions(
     transaction_id INT(11) PRIMARY KEY AUTO_INCREMENT,
     account_id INT(11) , /* NULL when bank_card_id is not null */
@@ -191,12 +193,11 @@ CREATE TABLE transactions(
     amount DECIMAL(15, 2),
     issued_date DATE NOT NULL,
     description VARCHAR(255),
-    transaction_type VARCHAR(15), /* PAYMENT, TRANSFER or ADD MONEY  */    
+    transaction_type VARCHAR(20), /* PAYMENT, TRANSFER-DEBIT, TRANSFER-CREDIT,  ADD MONEY ACCOUNT or ADD MONEY CARD */    
     
 	CONSTRAINT transactions_accounts_fk FOREIGN KEY (account_id) REFERENCES accounts(account_id),
     CONSTRAINT transactions_bank_cards_fk FOREIGN KEY (bank_card_id) REFERENCES bank_cards(bank_card_id)
 );
-
 CREATE TABLE supply_accounts(
     supply_account_id INT(11) PRIMARY KEY AUTO_INCREMENT,
     account_id INT(11) NOT NULL,
@@ -204,7 +205,8 @@ CREATE TABLE supply_accounts(
     amount DECIMAL(15, 2),
     issued_date DATE NOT NULL, 
     
-	CONSTRAINT supply_account_accounts_fk FOREIGN KEY (account_id) REFERENCES accounts(account_id)
+	CONSTRAINT supply_accounts_accounts_fk FOREIGN KEY (account_id) REFERENCES accounts(account_id),
+	CONSTRAINT supply_accounts_persons_fk FOREIGN KEY (person_id) REFERENCES persons(person_id)
 );
 
 

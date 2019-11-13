@@ -353,3 +353,85 @@
             }
         }
     }
+    class Supply_Account_Repository extends Repository
+    {
+        public const TABLE_NAME = "supply_accounts";
+
+        public static function insert($supply_account)
+        {
+            // prepare an insert statement
+            $sql = "INSERT INTO " . static::TABLE_NAME . " ";
+            $sql .= "(account_id, person_id, ";
+            $sql .= "amount, issued_date) ";
+            $sql .= "VALUES (?, ?, ?, ?)";
+            
+            try {
+                $stmt = self::$db->stmt_init();
+                $stmt->prepare($sql);
+
+                // bind varaibles to prepared statement as parameters
+                $stmt->bind_param("iids", $supply_account['account_id'], $supply_account['person_id'], $supply_account['amount'], $supply_account['issued_date']);
+                // execute the prepared statement
+                $stmt->execute();
+                // Close statement
+                $stmt->close();
+                return true;
+            } catch (mysqli_sql_exception $e) {
+                echo $e->__toString();
+                exit();
+            }
+        }
+    }
+    class Transaction_Repository extends Repository
+    {
+        public const TABLE_NAME = "transactions";
+
+        public static function insert($transaction)
+        {
+            // prepare an insert statement
+            $sql = "INSERT INTO " . static::TABLE_NAME . " ";
+            $sql .= "(account_id, bank_card_id, ";
+            $sql .= "amount, issued_date, ";
+            $sql .= "description, transaction_type) ";
+            $sql .= "VALUES (?, ?, ?, ?, ?, ?)";
+    
+            try {
+                $stmt = self::$db->stmt_init();
+                $stmt->prepare($sql);
+
+                // bind varaibles to prepared statement as parameters
+                $stmt->bind_param("iidsss", $transaction['account_id'], $transaction['bank_card_id'], $transaction['amount'], $transaction['issued_date'], $transaction['description'], $transaction['transaction_type']);
+                // execute the prepared statement
+                $stmt->execute();
+                // Close statement
+                $stmt->close();
+                return true;
+            } catch (mysqli_sql_exception $e) {
+                echo $e->__toString();
+                exit();
+            }
+        }
+
+        public static function find_transaction_by_account_id($account_id)
+        {
+            $sql = "SELECT * FROM transactions ";
+            $sql .= "WHERE account_id = ? ";
+
+            try {
+                $stmt = self::$db->stmt_init();
+                $stmt->prepare($sql);
+                $stmt->bind_param('i', $account_id);
+                
+                // execute the prepared statement
+                $stmt->execute();
+    
+                // get result
+                $result = $stmt->get_result();
+                $stmt->close();
+                return $result;
+            } catch (mysqli_sql_exception $e) {
+                echo $e->__toString();
+                exit();
+            }
+        }
+    }
