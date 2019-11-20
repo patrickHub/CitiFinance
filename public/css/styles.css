@@ -16,6 +16,15 @@ a {
   text-decoration: none;
   color: #000;
 }
+/*button,
+input[type="submit"],
+input[type="submit"]:visited {
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+}*/
 main {
   margin-top: 125px;
 }
@@ -302,10 +311,22 @@ input::-webkit-inner-spin-button {
 .block-article .main-content .row-transfer {
   margin-bottom: 15px;
 }
+.block-article .main-content .row-transfer:nth-child(3) {
+  margin-bottom: 0px;
+}
 .block-article .main-content .row-transaction {
   justify-content: space-between;
   font-size: 13px;
-  padding: 5px 0 5px 0;
+  padding: 4px 0 0 0;
+}
+.block-article .main-content .row-transaction a {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  color: #00545e;
+}
+.block-article .main-content .row-transaction a:hover {
+  font-weight: bold;
 }
 .block-article .main-content .row-transaction:first-child,
 .block-article .main-content .row-transaction:nth-child(2) {
@@ -346,6 +367,10 @@ input::-webkit-inner-spin-button {
   width: 35%;
 }
 .btn-article {
+  background: none;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
   display: inline-flex;
   min-width: 100px;
   margin-left: 5px;
@@ -367,6 +392,7 @@ input::-webkit-inner-spin-button {
 }
 .btn-cancel-article:hover {
   background: #eb1f1b;
+  border-color: #fff;
 }
 .btn-close-main-msg {
   position: absolute;
@@ -389,6 +415,7 @@ input::-webkit-inner-spin-button {
 .link-order-article {
   width: 100%;
   height: 65px;
+  margin-left: 0;
   text-align: center;
 }
 .inside-select-label {
