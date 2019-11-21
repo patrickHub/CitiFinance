@@ -49,3 +49,82 @@
         header('location: ' . $location);
         exit;
     }
+    function get_desc_for_imm_transfer($from_account_id, $to_account_id)
+    {
+        $from_account = Account_Repository::get_by_id($from_account_id);
+        $to_account = Account_Repository::get_by_id($to_account_id);
+        $messages = [];
+        $messages['from'] = "";
+        $messages['to'] = "";
+
+        if ($from_account['account_type_id'] === 1) {
+            $messages['from'] = 'ADD FR CHECK';
+            switch ($to_account['account_type_id']) {
+                case 2: {
+                    $messages['to'] = 'ADD TO SAVING';
+                break;
+                }
+                case 3: {
+                    $messages['to'] = 'ADD TO DEPOT';
+                break;
+                }
+                case 4: {
+                    $messages['to'] = 'ADD TO RETIRE';
+                break;
+                }
+
+            }
+        } elseif ($from_account['account_type_id'] === 2) {
+            $messages['from'] = 'ADD FR SAVING';
+            switch ($to_account['account_type_id']) {
+                    case 1: {
+                        $messages['to'] = 'ADD TO CHECK';
+                    break;
+                    }
+                    case 3: {
+                        $messages['to'] = 'ADD TO DEPOT';
+                    break;
+                    }
+                    case 4: {
+                        $messages['to'] = 'ADD TO RETIRE';
+                    break;
+                    }
+    
+                }
+        } elseif ($from_account['account_type_id'] === 3) {
+            $messages['from'] = 'ADD FR DEPOT';
+            switch ($to_account['account_type_id']) {
+                    case 1: {
+                        $messages['to'] = 'ADD TO CHECK';
+                    break;
+                    }
+                    case 2: {
+                        $messages['to'] = 'ADD TO SAVING';
+                    break;
+                    }
+                    case 4: {
+                        $messages['to'] = 'ADD TO RETIRE';
+                    break;
+                    }
+    
+                }
+        } elseif ($from_account['account_type_id'] === 4) {
+            $messages['from'] = 'ADD FR RETIRE';
+            switch ($to_account['account_type_id']) {
+                    case 1: {
+                        $messages['to'] = 'ADD TO CHECK';
+                    break;
+                    }
+                    case 2: {
+                        $messages['to'] = 'ADD TO SAVING';
+                    break;
+                    }
+                    case 3: {
+                        $messages['to'] = 'ADD TO DEPOT';
+                    break;
+                    }
+    
+                }
+        }
+        return $messages;
+    }

@@ -190,6 +190,7 @@ CREATE TABLE transactions(
     transaction_id INT(11) PRIMARY KEY AUTO_INCREMENT,
     account_id INT(11) , /* NULL when bank_card_id is not null */
     bank_card_id INT(11), /* NULL when account_id is not null */
+    account_current_amount DECIMAL(15, 2), /* The remainning account'amount after the transaction */
     amount DECIMAL(15, 2),
     issued_date DATE NOT NULL,
     description VARCHAR(255),

@@ -37,6 +37,7 @@ function log_out()
 {
     unset($_SESSION['person_id']);
     unset($_SESSION['last_login']);
+    unset($_SESSION['iban_id']);
     // session_destroy(); // optional: destroys the whole session
     return true;
 }

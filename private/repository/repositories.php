@@ -352,6 +352,33 @@
                 exit();
             }
         }
+        public static function remove_money_from_account($id, $amount)
+        {
+            // get the current balance from db
+            $account = static::get_by_id($id);
+            // set the amount to save
+            $remainedAmount = $account['balance'] - $amount;
+
+            // prepare an insert statement
+            $sql = "UPDATE " . static::TABLE_NAME . " ";
+            $sql .= "SET balance = ? ";
+            $sql .= "WHERE account_id = ?";
+            try {
+                $stmt = self::$db->stmt_init();
+                $stmt->prepare($sql);
+
+                // bind varaibles to prepared statement as parameters
+                $stmt->bind_param("di", $remainedAmount, $id);
+                // execute the prepared statement
+                $stmt->execute();
+                // Close statement
+                $stmt->close();
+                return true;
+            } catch (mysqli_sql_exception $e) {
+                echo $e->__toString();
+                exit();
+            }
+        }
     }
     class Supply_Account_Repository extends Repository
     {
@@ -391,16 +418,16 @@
             // prepare an insert statement
             $sql = "INSERT INTO " . static::TABLE_NAME . " ";
             $sql .= "(account_id, bank_card_id, ";
-            $sql .= "amount, issued_date, ";
-            $sql .= "description, transaction_type) ";
-            $sql .= "VALUES (?, ?, ?, ?, ?, ?)";
+            $sql .= "remained_balance, amount, ";
+            $sql .= "issued_date, description, transaction_type) ";
+            $sql .= "VALUES (?, ?, ?, ?, ?, ?, ?)";
     
             try {
                 $stmt = self::$db->stmt_init();
                 $stmt->prepare($sql);
 
                 // bind varaibles to prepared statement as parameters
-                $stmt->bind_param("iidsss", $transaction['account_id'], $transaction['bank_card_id'], $transaction['amount'], $transaction['issued_date'], $transaction['description'], $transaction['transaction_type']);
+                $stmt->bind_param("iiddsss", $transaction['account_id'], $transaction['bank_card_id'], $transaction['remained_balance'], $transaction['amount'], $transaction['issued_date'], $transaction['description'], $transaction['transaction_type']);
                 // execute the prepared statement
                 $stmt->execute();
                 // Close statement
@@ -416,8 +443,15 @@
         {
             $sql = "SELECT * FROM transactions ";
             $sql .= "WHERE account_id = ? ";
+            $sql .= "ORDER BY issued_date DESC ";
+            $sql .= "LIMIT 4";
 
             try {
+                //mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_ALL);
+                # wannabe noticed about all errors except those about indexes
+                $driver = new mysqli_driver();
+                $driver->report_mode = MYSQLI_REPORT_ALL & ~MYSQLI_REPORT_INDEX;
+
                 $stmt = self::$db->stmt_init();
                 $stmt->prepare($sql);
                 $stmt->bind_param('i', $account_id);

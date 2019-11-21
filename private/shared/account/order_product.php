@@ -47,8 +47,8 @@
             <div class="row-item">
                 <label for="account">Select an account to add money</label>
             </div>
-            <div class="row-item">
-                <select name="account" class="input-select" >
+            <div class="row-item form-select">
+                <select name="account" class="input-select" style="padding: 11px 8px 8px 15px;" >
                 <?php $accounts_set = Account_Repository::find_accounts_by_iban_id($_SESSION['iban_id']);?>
                     <?php while ($account = $accounts_set->fetch_assoc()) { ?>
                         <option  value="<?php echo $account['account_id']; ?>">

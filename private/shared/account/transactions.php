@@ -31,18 +31,35 @@
                 $transaction_set = Transaction_Repository::find_transaction_by_account_id($checking_account['account_id']);
                 $transaction_types = ['TRANSFER-CREDIT', 'ADD MONEY ACCOUNT'];
             ?>
-            <?php  while ($transaction = $transaction_set->fetch_assoc()) { ?>
-                <div class="row-item row-transaction border-bottom">
-                    <span><?php  echo $transaction['description']; ?> OF <?php  echo $transaction['issued_date']; ?>  </span>
-                    <span>CHF <?php  echo $transaction['amount']; ?> <?php echo in_array($transaction['transaction_type'], $transaction_types)? '+':'-'; ?></span>
-                </div>
             <?php
+                if ($transaction_set->num_rows === 0) { ?>
+                
+                <div class="row-item row-transaction row-empty-message flex">
+                    <span>Not available transaction</span>
+                </div>  
+                <?php
+                } else {
+                    while ($transaction = $transaction_set->fetch_assoc()) { ?>
+                        <div class="row-item row-transaction border-bottom">
+                            <a href="#">
+                                <span><?php  echo $transaction['description']; ?> OF <?php  echo $transaction['issued_date']; ?>  </span>
+                                <span>CHF <?php  echo $transaction['amount']; ?> <?php echo in_array($transaction['transaction_type'], $transaction_types)? '+':'-'; ?></span>
+                            </a>
+                        </div>
+            <?php
+                        }
                 }
             ?>
 
+
         </div>
         <footer>
-            <a class="item-link" href="#">And more</a>
+            <?php
+                if ($transaction_set->num_rows !== 0) { ?>
+                    <a class="item-link" href="#">And more</a>
+            <?php
+                }
+            ?>
         </footer>
     </form>
 </article>

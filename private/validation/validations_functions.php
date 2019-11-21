@@ -113,6 +113,17 @@
       }
       return false;
   }
+  function has_valid_amount_format($value)
+  {
+      $int_amount_regex = '/^[1-9]{1}[0-9]{0,}$/';
+      $dec_amount_regex = '/^[1-9]{1}[0-9]{0,}.[0-9]{0,}$/';
+      if (preg_match($int_amount_regex, $value)) {
+          return true;
+      } elseif (preg_match($dec_amount_regex, $value)) {
+          return true;
+      }
+      return false;
+  }
   function has_valid_phone_format($value)
   {
       $phone_regex = '/^0[2-9]{1}[0-9]{8}/';
@@ -157,4 +168,18 @@
           return false;
       }
       return true;
+  }
+  function has_enough_balance_for_transaction($account_id, $amount, $options=null)
+  {
+      // find the corresponding account from db
+      $account = Account_Repository::get_by_id($account_id);
+      $balance = $account['balance'];
+      $operation = $options['oper_type'] ?? '';
+
+      // check weither the balance +- overdraft is enough
+      if ($balance >= $amount or (($balance + $account['overdraft']) >= $amount and $operation !== 'immediate-transfer')) {
+          return true;
+      } else {
+          return false;
+      }
   }

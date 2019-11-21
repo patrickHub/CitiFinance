@@ -332,6 +332,10 @@ input::-webkit-inner-spin-button {
 .block-article .main-content .row-transaction:nth-child(2) {
   padding: 0;
 }
+.block-article .main-content .row-empty-message {
+  margin-top: 40px;
+  justify-content: center;
+}
 .block-article .main-content .input-select {
   padding: 11px 8px 8px 44px;
   font-size: 12px;

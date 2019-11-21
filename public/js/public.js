@@ -55,6 +55,21 @@ function addMoneyAccount() {
     $("#add-money-account-dialog-form").dialog("close");
   }
 }
+function transfer(btn) {
+  switch ($(btn).attr("id")) {
+    case "btn-immediate-transfer":
+      {
+        if ($("#input-amount-immediate-transfer").val().length == 0) {
+          $("#error-input-amount-immediate-transfer").text(
+            "please provide an amount!"
+          );
+        } else {
+          $("#form-immediate-transfer").submit();
+        }
+      }
+      break;
+  }
+}
 
 function changeFromToSelectInImmediateTransfer() {
   from = document.getElementById("select-from-immediate-transfer");
