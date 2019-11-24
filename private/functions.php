@@ -128,3 +128,11 @@
         }
         return $messages;
     }
+
+    function get_formatted_balance($balance)
+    {
+        if ($balance >= 0) {
+            return $balance . "+";
+        }
+        return $balance . "-";
+    }

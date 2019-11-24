@@ -58,8 +58,9 @@
                     </li>
                     <li class="menu-item full-name">
                         <a class="menu-link" href="#">
+                            <?php $person = Person_Repository::get_by_id($_SESSION['person_id']); ?>
                             <img src="<?php echo url_for('/images/landingpage_assets/icons8-admin-settings-male-50.png'); ?>" alt=""> 
-                            <span>Jane Doe</span>
+                            <span><?php echo $person['first_name']. " " . $person['last_name'];  ?></span>
                         </a>
                     </li>
                     <li class="menu-item logout">
@@ -99,8 +100,9 @@
                     </li>
                     <li class="menu-item full-name toggle">
                         <a class="menu-link" href="#">
+                            <?php $person = Person_Repository::get_by_id($_SESSION['person_id']); ?>
                             <img src="<?php echo url_for('/images/landingpage_assets/icons8-admin-settings-male-50.png'); ?>" alt=""> 
-                            <span>Jane Doe</span>
+                            <span><?php echo $person['first_name']. " " . $person['last_name'];  ?></span>
                         </a>
                     </li>
                 </ul>

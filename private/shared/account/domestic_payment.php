@@ -14,12 +14,13 @@
                         from
                     </div>
                     <select name="from" class="input-select">
-                        <option class="option-list" value="">
-                            Saving accounts    CHF 45671 
-                        </option>
-                        <option class="option-list" value="">
-                            Checking accounts    CHF 5025 
-                        </option>
+                        <?php $accounts_set = Account_Repository::find_accounts_by_iban_id($_SESSION['iban_id']);?>
+                        <?php while ($account = $accounts_set->fetch_assoc()) { ?>
+                            <option class="option-list"  value="<?php echo $account['account_id']; ?>">
+                                <?php $account_type = Account_type_Repository::get_by_id($account['account_type_id']); ?>
+                                <?php echo $account_type['type_name'] . " " . "CHF " . get_formatted_balance($account['balance']) ?>
+                            </option>
+                        <?php  }?>
                     </select>
                 </div>
 

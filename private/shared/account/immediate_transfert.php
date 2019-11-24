@@ -17,7 +17,7 @@
                             <?php while ($account = $accounts_set->fetch_assoc()) { ?>
                                 <option class="option-list"  value="<?php echo $account['account_id']; ?>">
                                     <?php $account_type = Account_type_Repository::get_by_id($account['account_type_id']); ?>
-                                    <?php echo $account_type['type_name'] . " " . "CHF " . $account['balance'] ?>
+                                    <?php echo $account_type['type_name'] . " " . "CHF " . get_formatted_balance($account['balance']) ?>
                                 </option>
                             <?php  }?>
                         </select>
@@ -34,7 +34,7 @@
                             <?php while ($account = $accounts_set->fetch_assoc()) { ?>
                                 <option class="option-list"  value="<?php echo $account['account_id']; ?>">
                                     <?php $account_type = Account_type_Repository::get_by_id($account['account_type_id']); ?>
-                                    <?php echo $account_type['type_name'] . " " . "CHF " . $account['balance'] ?>
+                                    <?php echo $account_type['type_name'] . " " . "CHF ". get_formatted_balance($account['balance']); ?>
                                 </option>
                             <?php  }?>
                         </select>

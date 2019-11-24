@@ -43,7 +43,7 @@
                         <div class="row-item row-transaction border-bottom">
                             <a href="#">
                                 <span><?php  echo $transaction['description']; ?> OF <?php  echo $transaction['issued_date']; ?>  </span>
-                                <span>CHF <?php  echo $transaction['amount']; ?> <?php echo in_array($transaction['transaction_type'], $transaction_types)? '+':'-'; ?></span>
+                                <span> <?php  echo "CHF " . $transaction['amount']; ?> <?php echo in_array($transaction['transaction_type'], $transaction_types)? '+':'-'; ?></span>
                             </a>
                         </div>
             <?php
